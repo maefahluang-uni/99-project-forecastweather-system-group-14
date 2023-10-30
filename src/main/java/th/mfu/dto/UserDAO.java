@@ -1,5 +1,5 @@
 package th.mfu.dto;
 
-public class UserDto {
+public class UserDAO {
 
 }
