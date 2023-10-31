@@ -1,15 +1,14 @@
 package th.mfu.dto;
 
-public class WeatherDTOImpl {
+public class ForecastDTOImpl {
     private static final String API_KEY = "7029d414059ca595dbe015fc53517617";
     private static final String API_URL = "https://api.openweathermap.org/data/2.5";
 
-    // Add method from Weather Data Transfer Object
-    @Override
-    public String getWeatherDataCity(String city, String country) throws IOException {
-        OkHttpClient client = new OkHHttpClient();
+    @Overide
+    public String getHourlyWeatherData(String city, String country) throws IOException {
+        OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url(API_URL + "/weather?q=" + city + "," + country + "&APPID=" + API_KEY)
+                .url(API_URL + "/forecast?q=" + city + "," + country + "&APPID=" + API_KEY)
                 .get()
                 .build();
         return getResponse(client, request);
