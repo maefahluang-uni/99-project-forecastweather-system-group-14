@@ -1,4 +1,4 @@
-package th.mfu;
+package th.mfu.model;
 
 public class Weather {
     private String city;
