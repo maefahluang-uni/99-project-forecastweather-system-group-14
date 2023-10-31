@@ -12,7 +12,7 @@ public class Forecast {
 	private String city;
 	private String time;
 	private String country;
-	private String countryISOCode;
+    private String countryISO;
 	private double temperature;
 	private String weather;
 	private String weatherDesc;
@@ -66,12 +66,12 @@ public class Forecast {
 		this.country = country;
 	}
 
-	public String getCountryISOCode() {
-		return countryISOCode;
+    public String getCountryISO() {
+        return countryISO;
 	}
 
-	public void setCountryISOCode(String countryISOCode) {
-		this.countryISOCode = countryISOCode;
+    public void setCountryISO(String countryISO) {
+        this.countryISO = countryISO;
 	}
 
 	public String getWeather() {

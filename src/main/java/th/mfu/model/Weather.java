@@ -46,8 +46,8 @@ public class Weather {
         return timeZone;
     }
 
-    public void setTimeZone(String timeZone) {
-        this.timeZone = timeZone;
+    public void setTimeZone(double timeZone2) {
+        this.timeZone = timeZone2;
     }
 
     public String getDescription() {
@@ -96,6 +96,12 @@ public class Weather {
 
     public void setHumidity(Double humidity) {
         this.humidity = humidity;
+    }
+
+    public void setCountryISOCode(String country2) {
+    }
+
+    public void setTimeZone(double timeZone2) {
     }
 
 }

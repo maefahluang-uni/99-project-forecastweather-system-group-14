@@ -7,10 +7,15 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.type.DateType;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import th.mfu.util.CountryCodes;
+import th.mfu.dao.WeatherDAO;
 import th.mfu.model.Forecast;
+import th.mfu.model.Weather;
 
 @Service
 public class WeatherServiceImpl implements WeatherService{
@@ -68,7 +73,7 @@ public class WeatherServiceImpl implements WeatherService{
 			this.weather.setHumidity(humidity);
 			this.weather.setPressure(pressure);
 			this.weather.setTemperature(temperature);
-			this.weather.setTempFeelsLike(tempFeelsLike);
+			this.weather.setTempFelt(tempFeelsLike);
 			this.weather.setTempMax(tempMax);
 			this.weather.setTempMin(tempMin);
 			this.weather.setTimeZone(timeZone);
@@ -105,7 +110,7 @@ public class WeatherServiceImpl implements WeatherService{
 			this.weatherForFiveDays = new LinkedHashMap<>();
 			Forecast hourlyWeather;
 			JSONObject obj = new JSONObject(this.json);
-			DateTime dt = new DateTime(new Date());
+			DateTime dt = new DateType(new Date());
 			DateTime.Property dtp = dt.dayOfWeek();
 			String day = dtp.getAsText();
 			
@@ -126,7 +131,7 @@ public class WeatherServiceImpl implements WeatherService{
 				
 				hourlyWeather.setDay(day);
 				hourlyWeather.setCity(getCity(obj));
-				hourlyWeather.setCountry(new CountryCodes().getCountry(getCountry(obj)));
+				hourlyWeather.setCountry(new CountryISO().getCountry(getCountry(obj)));
 				hourlyWeather.setCountryISOCode(getCountry(obj));
 				hourlyWeather.setTime(time);
 				hourlyWeather.setHumidity(humidity);
@@ -169,7 +174,7 @@ public class WeatherServiceImpl implements WeatherService{
 
     @Override
     public Map<String, List<Forecast>> getHourlyWeatherData(String city, String country)
-            throws th.mfu.service.IOException {
+			throws IOException {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'getHourlyWeatherData'");
     }
