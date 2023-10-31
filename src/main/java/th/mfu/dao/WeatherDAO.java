@@ -1,8 +1,8 @@
-package th.mfu.dto;
+package th.mfu.dao;
 
-import Java.io.IOException;
+import java.io.IOException;
 
-public interface WeatherDTO {
+public interface WeatherDAO {
 
     public String getWeatherDataCity(String city, String country) throws IOException;
 

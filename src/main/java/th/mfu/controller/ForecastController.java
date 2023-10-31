@@ -12,6 +12,6 @@ public class ForecastController implements ErrorController {
     private static final String ERROR_PATH = "/error";
 
     @Autowired
-    WeatheerService wService
+    WeatheerService wService;
 
 }

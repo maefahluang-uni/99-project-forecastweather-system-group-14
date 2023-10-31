@@ -2,6 +2,7 @@ package th.mfu.service;
 
 import java.util.List;
 import java.util.Map;
+import java.io.IOException;
 
 import th.mfu.model.Forecast;
 import th.mfu.model.Weather;
