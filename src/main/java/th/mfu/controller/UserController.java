@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/user")
-public class User {
+public class UserController {
      @GetMapping
-     public ResponseEntity<String> hello(){
+     public ResponseEntity<String> hello() {
           return new ResponseEntity<String>("", HttpStatus.OK);
      }
-    
+
 }

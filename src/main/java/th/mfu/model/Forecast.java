@@ -133,4 +133,7 @@ public class Forecast {
 		this.humidity = humidity;
 	}
 
+	public void setCountryISOCode(String country2) {
+	}
+
 }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import antlr.collections.List;
+import java.util.List;
 import th.mfu.model.Forecast;
 import th.mfu.service.WeatherService;
 import th.util.CountryCodes;
@@ -42,20 +42,13 @@ public class ForecastController implements ErrorController {
         return ERROR_PATH;
     }
 
-    /**
-     * @param city
-     * @param country
-     * @param model
-     * @return
-     * @throws IOException
-     */
     @GetMapping("/current/weather")
     public String getCurrentWeatherDataForCityAndCountry(@RequestParam("city") String city, @RequestParam("country") String country, Model model) throws IOException {
             
             model.addAttribute("weather", wService.getWeatherDataCity(city, country));
 
             if (weather != null) {
-                    model.addAttribute("weather", weather)
+                model.addAttribute("weather", weather);
             }
             return "weather_view";
     }

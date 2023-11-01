@@ -104,4 +104,7 @@ public class Weather {
     public void setTimeZone(double timeZone2) {
     }
 
+    public void setTemperature(double temperature) {
+    }
+
 }

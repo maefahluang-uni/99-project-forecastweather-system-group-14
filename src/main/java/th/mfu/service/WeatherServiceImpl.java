@@ -68,7 +68,7 @@ public class WeatherServiceImpl implements WeatherService{
 			
 			//Setting the Weather object
 			this.weather.setCity(name);
-			this.weather.setCountry(new CountryCodes().getCountry(country));
+			this.weather.setCountry(new th.util.CountryCodes().getCountry(country));
 			this.weather.setCountryISOCode(country);
 			this.weather.setHumidity(humidity);
 			this.weather.setPressure(pressure);
@@ -131,7 +131,7 @@ public class WeatherServiceImpl implements WeatherService{
 				
 				hourlyWeather.setDay(day);
 				hourlyWeather.setCity(getCity(obj));
-				hourlyWeather.setCountry(new CountryISO().getCountry(getCountry(obj)));
+				hourlyWeather.setCountry(new th.util.CountryCodes().getCountry(getCountry(obj)));
 				hourlyWeather.setCountryISOCode(getCountry(obj));
 				hourlyWeather.setTime(time);
 				hourlyWeather.setHumidity(humidity);
