@@ -172,11 +172,6 @@ public class WeatherServiceImpl implements WeatherService{
 		return country;
 	}
 
-    @Override
-    public Map<String, List<Forecast>> getHourlyWeatherData(String city, String country)
-			throws IOException {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getHourlyWeatherData'");
-    }
+
 
 }

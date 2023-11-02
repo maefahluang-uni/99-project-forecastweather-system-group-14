@@ -36,14 +36,20 @@ public class CurrentWeatherController implements ErrorController {
         return "weather_view";
     }
 
+    // Sets the search page and loads the ISO codes table.
+    @RequestMapping("/")
+    public String getWeatherView(Model model, CountryCodes codes) {
+        model.addAttribute("codes", codes.getAllCountryCodes());
+        return "weather_view";
+    }
 
-    @GetMapping("/weather")
+    @GetMapping("/current/weather")
     public String getCurrentWeatherDataForCityAndCountry(
             @RequestParam("city") String city,
             @RequestParam("country") String country,
             Model model) throws IOException {
-
-        Weather weather = this.wService.getWeatherDataCity(city, country);
+        Weather weather;
+        weather = this.wService.getWeatherDataCity(city, country);
 
         if (weather != null) {
             model.addAttribute("weather", weather);
