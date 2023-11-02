@@ -1,4 +1,4 @@
-package th.mfu.exception;
+/*package th.mfu.exception;
 
 public abstract class BaseException extends Exception {
     public BaseException(String code) {
@@ -13,4 +13,4 @@ public abstract class BaseException extends Exception {
         }
     }
     
-}
+}/* */
