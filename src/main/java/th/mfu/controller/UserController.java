@@ -56,21 +56,21 @@ public class UserController {
 
      @GetMapping
      public String showForgotPasswordForm(){
-          return "forgotPasswordForm";
+          return "forgotPassword";
      }
      @PostMapping("/forgotPassword")
      public String processForgotPassword(@RequestParam("email")String email){
-          return "forgotPasswordForm";
+          return "forgotPasswordConfirmation";
      }
 
      @GetMapping("/resetPassword")
      public String showResetPasswordForm(@RequestParam("token")String token){
-          return "forgotPasswordForm";
+          return "resetPassword";
      }
      
      @PostMapping("/resetPassword")
      public String resetPassword(@RequestParam("token")String token,@RequestParam("password")String password){
-          return "forgotPasswordForm";
+          return "resetPasswordConfirmation";
      }
 }
 
