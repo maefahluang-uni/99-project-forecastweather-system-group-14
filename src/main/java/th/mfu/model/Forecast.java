@@ -4,7 +4,7 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 public class Forecast {
-    
+
 	private static final Double ABSOLUTE_TEMPERATURE_CONSTANT = 273.15;
 	private DecimalFormat df;
 
@@ -12,7 +12,7 @@ public class Forecast {
 	private String city;
 	private String time;
 	private String country;
-    private String countryISO;
+	private String countryISOCode;
 	private double temperature;
 	private String weather;
 	private String weatherDesc;
@@ -20,13 +20,13 @@ public class Forecast {
 	private double tempMax;
 	private double pressure;
 	private double humidity;
-    
-    public Forecast() {
+
+	public Forecast() {
 		this.df = new DecimalFormat("#.00");
 		this.df.setRoundingMode(RoundingMode.CEILING);
 	}
 
-    public String getTime() {
+	public String getTime() {
 		return time;
 	}
 
@@ -66,12 +66,12 @@ public class Forecast {
 		this.country = country;
 	}
 
-    public String getCountryISO() {
-        return countryISO;
+	public String getCountryISOCode() {
+		return countryISOCode;
 	}
 
-    public void setCountryISO(String countryISO) {
-        this.countryISO = countryISO;
+	public void setCountryISOCode(String countryISOCode) {
+		this.countryISOCode = countryISOCode;
 	}
 
 	public String getWeather() {
@@ -131,9 +131,6 @@ public class Forecast {
 
 	public void setHumidity(double humidity) {
 		this.humidity = humidity;
-	}
-
-	public void setCountryISOCode(String country2) {
 	}
 
 }

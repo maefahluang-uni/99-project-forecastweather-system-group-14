@@ -1,4 +1,4 @@
-package th.util;
+package th.mfu.util;
 
 import java.util.HashMap;
 import java.util.Locale;

@@ -11,5 +11,7 @@ public interface WeatherService {
 
     public Weather getWeatherDataCity(String city, String country) throws IOException;
 
+    Map<String, List<Forecast>> getHourlyWeather(String city, String country) throws IOException;
+
     public Map<String, List<Forecast>> getHourlyWeatherData(String city, String country) throws IOException;
 }

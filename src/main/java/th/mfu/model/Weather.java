@@ -1,29 +1,31 @@
 package th.mfu.model;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+
 public class Weather {
+
+    private static final Double ABSOLUTE_TEMPERATURE_CONSTANT = 273.15;
+    private static final Integer CONVERT_SECONDS_TO_HOURS = 3600;
+
+    private DecimalFormat df;
+
     private String city;
     private String country;
-    private String countryISO;
-    private String timeZone;
-    private String description;
-    private String tempFelt;
-    private Double tempMin;
-    private Double tempMax;
-    private Double pressure;
-    private Double humidity;
+    private String countryISOCode;
+    private double timeZone;
+    private double temperature;
+    private String weather;
+    private String weatherDesc;
+    private double tempFeelsLike;
+    private double tempMin;
+    private double tempMax;
+    private double pressure;
+    private double humidity;
 
     public Weather() {
-        // empty constructor for JSON Parsing
-    }
-
-    // Getter & Setter
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+        this.df = new DecimalFormat("#.00");
+        this.df.setRoundingMode(RoundingMode.CEILING);
     }
 
     public String getCountry() {
@@ -34,77 +36,96 @@ public class Weather {
         this.country = country;
     }
 
-    public String getCountryISO() {
-        return countryISO;
-    }
-
-    public void setCountryISO(String countryISO) {
-        this.countryISO = countryISO;
-    }
-
-    public String getTimeZone() {
+    public double getTimeZone() {
         return timeZone;
     }
 
-    public void setTimeZone(double timeZone2) {
-        this.timeZone = timeZone2;
+    public void setTimeZone(double timeZone) {
+        this.timeZone = timeZone/CONVERT_SECONDS_TO_HOURS;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getTempFelt() {
-        return tempFelt;
-    }
-
-    public void setTempFelt(String tempFelt) {
-        this.tempFelt = tempFelt;
-    }
-
-    public Double getTempMin() {
-        return tempMin;
-    }
-
-    public void setTempMin(Double tempMin) {
-        this.tempMin = tempMin;
-    }
-
-    public Double getTempMax() {
-        return tempMax;
-    }
-
-    public void setTempMax(Double tempMax) {
-        this.tempMax = tempMax;
-    }
-
-    public Double getPressure() {
-        return pressure;
-    }
-
-    public void setPressure(Double pressure) {
-        this.pressure = pressure;
-    }
-
-    public Double getHumidity() {
-        return humidity;
-    }
-
-    public void setHumidity(Double humidity) {
-        this.humidity = humidity;
-    }
-
-    public void setCountryISOCode(String country2) {
-    }
-
-    public void setTimeZone(double timeZone2) {
+    public double getTemperature() {
+        this.df.format(this.temperature);
+        return temperature;
     }
 
     public void setTemperature(double temperature) {
+        this.temperature = Double.parseDouble(String.format("%.2f", temperature - ABSOLUTE_TEMPERATURE_CONSTANT));
+    }
+
+    public double getTempFeelsLike() {
+        this.df.format(this.tempFeelsLike);
+        return tempFeelsLike;
+    }
+
+    public void setTempFeelsLike(double tempFeelsLike) {
+        this.tempFeelsLike = Double.parseDouble(String.format("%.2f", tempFeelsLike - ABSOLUTE_TEMPERATURE_CONSTANT));
+    }
+
+    public double getTempMin() {
+        this.df.format(this.tempMin);
+        return tempMin;
+    }
+
+    public void setTempMin(double tempMin) {
+        this.tempMin = Double.parseDouble(String.format("%.2f", tempMin - ABSOLUTE_TEMPERATURE_CONSTANT));
+    }
+
+    public double getTempMax() {
+        this.df.format(this.tempMax);
+        return tempMax;
+    }
+
+    public void setTempMax(double tempMax) {
+        this.tempMax = Double.parseDouble(String.format("%.2f", tempMax - ABSOLUTE_TEMPERATURE_CONSTANT));
+    }
+
+    public double getPressure() {
+        return pressure;
+    }
+
+    public void setPressure(double pressure) {
+        this.pressure = pressure;
+    }
+
+    public double getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(double humidity) {
+        this.humidity = humidity;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountryISOCode() {
+        return countryISOCode;
+    }
+
+    public void setCountryISOCode(String country) {
+        this.countryISOCode = country;
+    }
+
+    public String getWeather() {
+        return weather;
+    }
+
+    public void setWeather(String weather) {
+        this.weather = weather;
+    }
+
+    public String getWeatherDesc() {
+        return weatherDesc;
+    }
+
+    public void setWeatherDesc(String weatherDesc) {
+        this.weatherDesc = weatherDesc;
     }
 
 }

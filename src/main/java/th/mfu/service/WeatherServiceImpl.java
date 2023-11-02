@@ -7,7 +7,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.type.DateType;
+import org.joda.time.DateTime;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -68,12 +68,12 @@ public class WeatherServiceImpl implements WeatherService{
 			
 			//Setting the Weather object
 			this.weather.setCity(name);
-			this.weather.setCountry(new th.util.CountryCodes().getCountry(country));
+			this.weather.setCountry(new CountryCodes().getCountry(country));
 			this.weather.setCountryISOCode(country);
 			this.weather.setHumidity(humidity);
 			this.weather.setPressure(pressure);
 			this.weather.setTemperature(temperature);
-			this.weather.setTempFelt(tempFeelsLike);
+			this.weather.setTempFeelsLike(tempFeelsLike);
 			this.weather.setTempMax(tempMax);
 			this.weather.setTempMin(tempMin);
 			this.weather.setTimeZone(timeZone);
@@ -131,7 +131,7 @@ public class WeatherServiceImpl implements WeatherService{
 				
 				hourlyWeather.setDay(day);
 				hourlyWeather.setCity(getCity(obj));
-				hourlyWeather.setCountry(new th.util.CountryCodes().getCountry(getCountry(obj)));
+				hourlyWeather.setCountry(new CountryISO().getCountry(getCountry(obj)));
 				hourlyWeather.setCountryISOCode(getCountry(obj));
 				hourlyWeather.setTime(time);
 				hourlyWeather.setHumidity(humidity);

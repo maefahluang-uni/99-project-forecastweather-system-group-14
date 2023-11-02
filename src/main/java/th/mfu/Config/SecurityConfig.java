@@ -1,8 +1,12 @@
-package com.bouali.oauth2.social.security;
+/*
+package th.mfu.Config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.EnableConSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
@@ -22,3 +26,4 @@ public class SecurityConfig {
                return http.build();
      }
 }
+*/
