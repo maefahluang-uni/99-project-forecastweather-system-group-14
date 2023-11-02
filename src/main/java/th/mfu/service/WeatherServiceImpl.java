@@ -110,7 +110,7 @@ public class WeatherServiceImpl implements WeatherService{
 			this.weatherForFiveDays = new LinkedHashMap<>();
 			Forecast hourlyWeather;
 			JSONObject obj = new JSONObject(this.json);
-			DateTime dt = new DateType(new Date());
+			DateTime dt = new DateTime(new Date());
 			DateTime.Property dtp = dt.dayOfWeek();
 			String day = dtp.getAsText();
 			
@@ -131,7 +131,7 @@ public class WeatherServiceImpl implements WeatherService{
 				
 				hourlyWeather.setDay(day);
 				hourlyWeather.setCity(getCity(obj));
-				hourlyWeather.setCountry(new CountryISO().getCountry(getCountry(obj)));
+				hourlyWeather.setCountry(new CountryCodes().getCountry(getCountry(obj)));
 				hourlyWeather.setCountryISOCode(getCountry(obj));
 				hourlyWeather.setTime(time);
 				hourlyWeather.setHumidity(humidity);
