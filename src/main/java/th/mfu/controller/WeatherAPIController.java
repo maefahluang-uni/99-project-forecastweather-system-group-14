@@ -39,7 +39,7 @@ public class WeatherAPIController implements ErrorController {
 
         model.addAttribute("codes", codes.getAllCountryCodes());
 
-        return "weather_view";
+        return "weather";
 
     }
 
@@ -48,7 +48,7 @@ public class WeatherAPIController implements ErrorController {
     public String getWeatherView(Model model, CountryCodes codes) {
         model.addAttribute("codes", codes.getAllCountryCodes());
 
-        return "weather_view";
+        return "weather";
 
     }
 
@@ -64,12 +64,12 @@ public class WeatherAPIController implements ErrorController {
 
         if (weather != null) {
             model.addAttribute("weather", weather);
-            return "weather_for_city";
+            return "search_for_city";
         } else {
             CountryCodes codes = new CountryCodes();
             model.addAttribute("error", true);
             model.addAttribute("codes", codes.getAllCountryCodes());
-            return "weather_view";
+            return "weather";
         }
 
     }
@@ -91,13 +91,13 @@ public class WeatherAPIController implements ErrorController {
             model.addAttribute("days", this.days);
             model.addAttribute("weather_data", this.weatherData);
 
-            return "five_day_forecast";
+            return "forecast";
         } else {
             CountryCodes codes = new CountryCodes();
             model.addAttribute("error", true);
             model.addAttribute("codes", codes.getAllCountryCodes());
 
-            return "weather_view";
+            return "weather";
         }
 
     }
