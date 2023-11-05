@@ -16,7 +16,7 @@
 		<java.version>17</java.version>
 	</properties>
 
-
+<!--
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -28,6 +28,7 @@
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
+	-->
 
 	<dependencies>
 		<dependency>
@@ -51,16 +52,20 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
-		<!-- Spring JPA  -->
+		<!-- Spring JPA  
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		-->
+
+		<!--
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.33</version>
 		</dependency>
+		-->
 		<!--
         <dependency>
             <groupId>com.h2database</groupId>
@@ -76,28 +81,43 @@
            <artifactId>spring-cloud-gcp-starter-sql-mysql</artifactId>
        </dependency> -->
 		<!-- JSTL -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+<dependency>
+    <groupId>javax.servlet</groupId>
+    <artifactId>javax.servlet-api</artifactId>
+    <version>4.0.1</version>
+    <scope>provided</scope>
+</dependency>
+
+
 		<!-- Apache Tomcat Jasper -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
 			<artifactId>tomcat-embed-jasper</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.squareup.okhttp3</groupId>
-			<artifactId>okhttp</artifactId>
-			<version>4.1.0</version>
-		</dependency>
 
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-			<version>2.10.9</version> <!-- Use the appropriate version -->
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+<dependency>
+    <groupId>com.squareup.okhttp3</groupId>
+    <artifactId>okhttp</artifactId>
+    <version>5.0.0-alpha.11</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
+<dependency>
+    <groupId>javax.persistence</groupId>
+    <artifactId>javax.persistence-api</artifactId>
+    <version>2.2</version>
+</dependency>
+
+
+
+		<!-- https://mvnrepository.com/artifact/joda-time/joda-time -->
+<dependency>
+    <groupId>joda-time</groupId>
+    <artifactId>joda-time</artifactId>
+    <version>2.12.5</version>
+</dependency>
 
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -105,11 +125,13 @@
 			<version>1.5.8</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20190722</version>
-		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.json/json -->
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20231013</version>
+</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-test</artifactId>
@@ -117,30 +139,27 @@
 	</dependencies>
 
 	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.9.0</version>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<source>${java.version}</source>
-					<target>${java.version}</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>repackage</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <source>17</source>
+                <target>17</target>
+                <encoding>UTF-8</encoding>
+                <fork>true</fork>
+                <!-- Specify the path to your Java executable (java.exe) -->
+                <executable>C:\Program Files\Java\jdk-17\bin\java</executable>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
 </project>

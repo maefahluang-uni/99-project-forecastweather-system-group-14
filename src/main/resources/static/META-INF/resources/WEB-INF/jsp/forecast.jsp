@@ -106,16 +106,16 @@
         <tr>
             <td id="current_day">
                 ${days[0]} (Today)
-            </td>
-            <td>Country</td>
-            <td>Country (ISO code)</td>
-            <td>Temperature (&#176;C)</td>
-            <td>Minimum Temperature (&#176;C)</td>
-            <td>Maximum Temperature (&#176;C)</td>
-            <td>Weather</td>
-            <td>Weather Description</td>
-            <td>Pressure</td>
-            <td>Humidity</td>
+                    <td>${list.time}</td>
+                    <td>${list.country}</td>
+                    <td>${list.countryISOCode}</td>
+                    <td>${list.temperature}</td>
+                    <td>${list.tempMin}</td>
+                    <td>${list.tempMax}</td>
+                    <td>${list.weather}</td>
+                    <td>${list.weatherDesc}</td>
+                    <td>${list.pressure}</td>
+                    <td>${list.humidity}</td>
         </tr>
         </thead>
         <!-- Today -->
@@ -128,7 +128,7 @@
                 <td>${list.temperature}</td>
                 <td>${list.tempMin}</td>
                 <td>${list.tempMax}</td>
-                <td>${list.weather} <i class="fas fa-cloud-sun weather-icon"></i></td>
+                <td>${list.weather}</td>
                 <td>${list.weatherDesc}</td>
                 <td>${list.pressure}</td>
                 <td>${list.humidity}</td>
@@ -145,7 +145,7 @@
                 <td>${list.temperature}</td>
                 <td>${list.tempMin}</td>
                 <td>${list.tempMax}</td>
-                <td>${list.weather} <i class="fas fa-cloud-sun weather-icon"></i></td>
+                <td>${list.weather}</td>
                 <td>${list.weatherDesc}</td>
                 <td>${list.pressure}</td>
                 <td>${list.humidity}</td>
@@ -162,7 +162,7 @@
                 <td>${list.temperature}</td>
                 <td>${list.tempMin}</td>
                 <td>${list.tempMax}</td>
-                <td>${list.weather} <i class="fas fa-cloud weather-icon"></i></td>
+                <td>${list.weather}</td>
                 <td>${list.weatherDesc}</td>
                 <td>${list.pressure}</td>
                 <td>${list.humidity}</td>
