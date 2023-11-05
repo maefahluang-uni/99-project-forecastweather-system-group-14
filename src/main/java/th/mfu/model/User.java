@@ -1,5 +1,4 @@
 package th.mfu.model;
-import javax.annotation.Generated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
