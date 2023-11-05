@@ -29,7 +29,7 @@ public class UserController {
      }
 
      @GetMapping
-     @RequestMapping(value = "/Login")
+     @RequestMapping(value = "/login")
      public ResponseEntity<String> login() {
           return new ResponseEntity<String>("", HttpStatus.OK);
      }
@@ -38,7 +38,7 @@ public class UserController {
           return "welcome"+username;
      }
      @GetMapping
-     @RequestMapping(value = "/Logout")
+     @RequestMapping(value = "/logout")
      public ResponseEntity<String> logout() {
           return new ResponseEntity<String>("", HttpStatus.OK);
      }
@@ -49,7 +49,7 @@ public class UserController {
      
      
      @PostMapping
-     @RequestMapping(value ="/Sighup")
+     @RequestMapping(value ="/sighup")
      public String Sighup(@RequestBody User request) {
           return "Received" + request;
      }

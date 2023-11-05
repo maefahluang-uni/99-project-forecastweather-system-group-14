@@ -4,11 +4,6 @@ import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
 public class Forecast {
-<<<<<<< HEAD
-    
-=======
-
->>>>>>> 9d73afb7866203bc1eca94d760fcf51dd40d511f
 	private static final Double ABSOLUTE_TEMPERATURE_CONSTANT = 273.15;
 	private DecimalFormat df;
 
@@ -24,22 +19,13 @@ public class Forecast {
 	private double tempMax;
 	private double pressure;
 	private double humidity;
-<<<<<<< HEAD
-    
-    public Forecast() {
-=======
 
 	public Forecast() {
->>>>>>> 9d73afb7866203bc1eca94d760fcf51dd40d511f
 		this.df = new DecimalFormat("#.00");
 		this.df.setRoundingMode(RoundingMode.CEILING);
 	}
 
-<<<<<<< HEAD
-    public String getTime() {
-=======
 	public String getTime() {
->>>>>>> 9d73afb7866203bc1eca94d760fcf51dd40d511f
 		return time;
 	}
 
