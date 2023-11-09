@@ -1,15 +1,15 @@
-package th.mfu.util;
-
-import java.util.HashMap;
+package th.mfu.countryCodes;
+import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 
 public class CountryCodes {
+
     private Map<String, String> countries;
 
     public CountryCodes() {
 
-        this.countries = new HashMap<>();
+        this.countries = new LinkedHashMap<>();
         for (String iso : Locale.getISOCountries()) {
             Locale l = new Locale("", iso);
             countries.put(l.getDisplayCountry(), iso);
@@ -27,9 +27,9 @@ public class CountryCodes {
 
         String country = "";
 
-        for (String get : this.countries.keySet()) {
+        for(String get : this.countries.keySet()) {
 
-            if (this.countries.get(get).equals(countryCode)) {
+            if(this.countries.get(get).equals(countryCode)) {
 
                 country = get;
 
@@ -41,7 +41,7 @@ public class CountryCodes {
 
     }
 
-    public Map<String, String> getAllCountryCodes() {
+    public Map<String, String> getAllCountryCodes(){
 
         return this.countries;
 
