@@ -6,6 +6,7 @@ import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @Controller
 @RequestMapping("/")
 public class WeatherController implements ErrorController {
@@ -46,7 +48,7 @@ public class WeatherController implements ErrorController {
     public String errorpage(Model model) {
         CountryCodes codes = new CountryCodes();
         model.addAttribute("codes", codes.getAllCountryCodes());
-        return "error"; // Return the custom error page
+        return "weather-view"; // Return the custom error page
     }
 
     public String getErrorPath() {

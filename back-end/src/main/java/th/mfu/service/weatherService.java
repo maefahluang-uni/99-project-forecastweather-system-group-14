@@ -67,7 +67,7 @@ public class weatherService implements  weatherServiceRepository {
             double feels_like = obj.getJSONObject("main").getDouble("feels_like");
             double temp_min = obj.getJSONObject("main").getDouble("temp_min");
             double temp_max = obj.getJSONObject("main").getDouble("temp_max");
-            double wind = obj.getJSONObject("wind").getDouble("wind");
+            obj.getJSONObject("wind").getDouble("wind");
             double timeZone = obj.getDouble("timezone");
             String weather = obj.getJSONArray("weather").getJSONObject(0).getString("main");
             String des = obj.getJSONArray("weather").getJSONObject(0).getString("description");
