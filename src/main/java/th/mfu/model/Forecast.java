@@ -5,8 +5,8 @@ import java.text.DecimalFormat;
 
 public class Forecast {
 
-    private static final Double ABSOLUTE_TEMPERATURE_CONSTANT = 273.15;
-    private DecimalFormat df;
+	private static final Double ABSOLUTE_TEMPERATURE_CONSTANT = 273.15;
+	private DecimalFormat df;
 
     private String day;
     private String city;
@@ -23,11 +23,11 @@ public class Forecast {
     private double wind;
     private double feels_likes;
 
-    public Forecast() {
+	public Forecast() {
 
-        this.df = new DecimalFormat("#.00");
-        this.df.setRoundingMode(RoundingMode.CEILING);
-    }
+		this.df = new DecimalFormat("#.00");
+		this.df.setRoundingMode(RoundingMode.CEILING);
+	}
 
 
     public String getTime() {
