@@ -67,7 +67,7 @@ public class WeatherDAOImpl implements weatherDAO {
         Request request;
 
             request = new Request.Builder()
-                    .url(OPENWEATHER_API_URL + "/forecast?q=" + city + "&country=" + country + "&appid="
+                    .url(OPENWEATHER_API_URL + "/forecast?q=" + city + "," + country + "&appid="
                             + OPENWEATHER_API_KEY)
                     .get()
                     .build();
