@@ -140,4 +140,6 @@ public class Weather {
         this.feels_like = feels_like;
     }
 
+    public void setWind(double wind) {
+    }
 }
