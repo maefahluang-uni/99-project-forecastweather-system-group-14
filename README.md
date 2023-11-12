@@ -47,6 +47,26 @@ To run the backend, follow these steps:
     sdk use java 17.0.0-zulu
     mvn clean spring-boot:run
     ```
+3. Browser Backend Localhost:
+
+   **{ISOCountryCODE} is Optional**
+   
+    ```JSP
+    [weather-view page]
+    http://localhost:8080/
+    ```
+
+     ```JSP
+    [forecast-view page]
+    http://localhost:8080/five_day/forecast?city={YOUR_CITY}&country={ISOCountryCODE}
+    ```
+
+     ```JSP
+    [current-weather-view page]
+    http://localhost:8080/current/weather?city={YOUR_CITY}&country={ISOCountryCODE}
+    ```
+
+    
 
    You can customize the Maven commands as needed, such as adding additional parameters for cleaning or validation.
 
@@ -67,6 +87,23 @@ To run the frontend, follow these steps:
 3. Start the React frontend:
     ```bash
     npm start
+    ```
+
+4. Browser Fronted - React Localhost:
+
+   ```React
+    [weather-view page]
+    http://localhost:3000/
+    ```
+
+     ```React
+    [forecast-view page]
+    http://localhost:3000/five_day/forecast?city={YOUR_CITY}&country={ISOCountryCODE}
+    ```
+
+     ```React
+    [current-weather-view page]
+    http://localhost:3000/current/weather?city={YOUR_CITY}&country={ISOCountryCODE}
     ```
 
    This will launch the development server for the React frontend.
