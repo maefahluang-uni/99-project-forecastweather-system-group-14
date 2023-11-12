@@ -1,7 +1,5 @@
 package th.mfu.model;
 
-import lombok.Getter;
-
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 
@@ -11,14 +9,12 @@ public class Weather {
     private static final Integer CONVERT_SECONDS_TO_HOURS = 3600;
 
     private DecimalFormat df;
-    private String unit;
+
     private String city;
     private String country;
     private String countryISOCode;
     private double timeZone;
     private double temperature;
-    private double feels_like;
-    @Getter
     private String weather;
     private String weatherDesc;
     private double tempFeelsLike;
@@ -116,6 +112,10 @@ public class Weather {
         this.countryISOCode = country;
     }
 
+    public String getWeather() {
+        return weather;
+    }
+
     public void setWeather(String weather) {
         this.weather = weather;
     }
@@ -126,20 +126,5 @@ public class Weather {
 
     public void setWeatherDesc(String weatherDesc) {
         this.weatherDesc = weatherDesc;
-    }
-
-    public double getFeels_like() {
-        return feels_like;
-    }
-
-    public Double getFeels_Like() {
-        return feels_like;
-    }
-
-    public void setFeels_Like(double feels_like) {
-        this.feels_like = feels_like;
-    }
-
-    public void setWind(double wind) {
     }
 }

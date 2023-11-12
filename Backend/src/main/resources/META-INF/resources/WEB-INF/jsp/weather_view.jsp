@@ -80,7 +80,7 @@
 						<input class="form-control" id="country" name="country" type="text" value="" placeholder="Your country's ISO code (not required)"/>
 						<div class="input-group-append">
 							<button type="submit" formaction="/current/weather" name="current" class="btn btn-success btn-sm">Current Weather</button>
-							<button type="submit" formaction="/five_day/weather" name="five_day" class="btn btn-info btn-sm">5 Day Forecast</button>
+							<button type="submit" formaction="/five_day/forecast" name="five_day" class="btn btn-info btn-sm">5 Day Forecast</button>
 						</div>
 					</div>
 				</form>
@@ -93,30 +93,52 @@
 
 	<!-- ISO codes -->
 	<div id = "iso_codes" class = "card-body" align = "center">
+
 		<h3 style = "text-decoration: underline;">Countries and their ISO codes</h3><br/>
+
 		<p>To search for your country, hold 'Ctrl' and press 'F' and then enter your country</p>
+
 		<table class = "table table-striped table-sm">
+
 			<thead style = "background-color: #000000; color: #ffffff">
 			<tr>
-				<td>Country</td>
-				<td>ISO Code</td>
+				<td>
+					Country
+				</td>
+				<td>
+					ISO Code
+				</td>
 			</tr>
 			</thead>
-			<tbody><c:forEach items="${codes}" var="list">
+
+			<tbody>
+			<c:forEach items="${codes}" var="list">
+
 				<tr>
 					<td>
-						${list.key}
+							${list.key}
 					</td>
 					<td>
 						<a href = "#weather_search">
 							<button id = "iso_code" class = "btn btn-outline-info btn-sm" value = "${list.value}" onclick = "addISOCode(value)">${list.value}</button>
 						</a>
 					</td>
-				</tr></c:forEach>
+				</tr>
+
+			</c:forEach>
 			</tbody>
+
 		</table>
+
 	</div>
 
-	<script src="/public/js/search-iso-codes.js"></script>
+	<script>
+		//Inline JS
+		function addISOCode(country){
+
+		let addISO = document.getElementById("country");
+
+		addISO.value = country;
+	}</script>
 </body>
 </html>

@@ -27,9 +27,9 @@ public class CountryCodes {
 
         String country = "";
 
-        for(String get : this.countries.keySet()) {
+        for (String get : this.countries.keySet()) {
 
-            if(this.countries.get(get).equals(countryCode)) {
+            if (this.countries.get(get).equals(countryCode)) {
 
                 country = get;
 
@@ -41,10 +41,9 @@ public class CountryCodes {
 
     }
 
-    public Map<String, String> getAllCountryCodes(){
+    public Map<String, String> getAllCountryCodes() {
 
         return this.countries;
 
     }
-
 }

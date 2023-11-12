@@ -24,8 +24,6 @@ public class weatherServiceImpl implements weatherService {
     //Autowired
     @Autowired
     WeatherDAOImpl weatherDAOImpl;
-    private String city;
-    private String country;
 
     //Implement from Repository Method
     @Override
@@ -70,7 +68,7 @@ public class weatherServiceImpl implements weatherService {
             double humidity = obj.getJSONObject("main").getDouble("humidity");
             double pressure = obj.getJSONObject("main").getDouble("pressure");
             double temp = obj.getJSONObject("main").getDouble("temp");
-            double feels_like = obj.getJSONObject("main").getDouble("feels_like");
+            double tempFeelsLike = obj.getJSONObject("main").getDouble("feels_like");
             double temp_min = obj.getJSONObject("main").getDouble("temp_min");
             double temp_max = obj.getJSONObject("main").getDouble("temp_max");
             double timeZone = obj.getDouble("timezone");
@@ -87,7 +85,7 @@ public class weatherServiceImpl implements weatherService {
             this.weather.setHumidity(humidity);
             this.weather.setPressure(pressure);
             this.weather.setTemperature(temp);
-            this.weather.setTempFeelsLike(feels_like);
+            this.weather.setTempFeelsLike(tempFeelsLike);
             this.weather.setTempMin(temp_min);
             this.weather.setTempMax(temp_max);
             this.weather.setTimeZone(timeZone);
@@ -95,10 +93,6 @@ public class weatherServiceImpl implements weatherService {
             this.weather.setWeatherDesc(des);
 
             // Check if "wind" key exists before trying to retrieve its value
-            if (obj.has("wind")) {
-                double wind = obj.getJSONObject("wind").getDouble("speed");
-                this.weather.setWind(wind);
-            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -129,8 +123,8 @@ public class weatherServiceImpl implements weatherService {
                 double temperature = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getInt("temp");
                 double temp_max = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getInt("temp_max");
                 double temp_min = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getInt("temp_min");
-                double wind = obj.getJSONArray("list").getJSONObject(i).getJSONObject("wind").getInt("wind_speed");
-                String weather = obj.getJSONArray("list").getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("weather");
+                double wind = obj.getJSONArray("list").getJSONObject(i).getJSONObject("wind").getInt("speed");
+                String weather = obj.getJSONArray("list").getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("main");
                 String weatherDesc = obj.getJSONArray("list").getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("description");
 
                 hourlyWeather.setDay(day);

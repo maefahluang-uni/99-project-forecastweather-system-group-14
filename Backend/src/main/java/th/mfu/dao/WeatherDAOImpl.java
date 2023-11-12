@@ -22,7 +22,7 @@ public class WeatherDAOImpl implements weatherDAO {
 
     @Override
     public String getHourlyWeatherData(String city, String country) throws IOException {
-        return connectAPICity(city, country);
+        return connectFiveDayForecast(city, country);
     }
 
     // Retreived Data JSON From OpenWeatherMap-API
@@ -49,12 +49,12 @@ public class WeatherDAOImpl implements weatherDAO {
 
         if (country.isEmpty()) {
             request = new Request.Builder()
-                    .url("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + OPENWEATHER_API_KEY)
+                    .url(OPENWEATHER_API_URL +"/weather?q=" + city + "&appid=" + OPENWEATHER_API_KEY)
                     .get()
                     .build();
         } else {
             request = new Request.Builder()
-                    .url("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&country=" + country + "&appid="
+                    .url(OPENWEATHER_API_URL + "/weather?q=" + city + "&country=" + country + "&appid="
                             + OPENWEATHER_API_KEY)
                     .get()
                     .build();
@@ -62,16 +62,19 @@ public class WeatherDAOImpl implements weatherDAO {
         return getResponse(client, request);
     }
 
-    private String connectFiveDayForecast(String city, String country) throws IOException {
-        OkHttpClient client = new OkHttpClient();
-        Request request;
 
-            request = new Request.Builder()
-                    .url(OPENWEATHER_API_URL + "/forecast?q=" + city + "," + country + "&appid="
-                            + OPENWEATHER_API_KEY)
-                    .get()
-                    .build();
+    public String connectFiveDayForecast(String city, String country) throws IOException {
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(OPENWEATHER_API_URL + "/forecast?q=" + city + "&country=" + country +"&appid="
+                        + OPENWEATHER_API_KEY)
+                .get()
+                .build();
+
         return getFiveDayResponse(client, request);
+
     }
 
 }
