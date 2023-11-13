@@ -1,6 +1,7 @@
 package th.mfu.service;
 
 import org.joda.time.DateTime;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,22 +26,6 @@ public class weatherServiceImpl implements weatherService {
     @Autowired
     WeatherDAOImpl weatherDAOImpl;
 
-    //Implement from Repository Method
-    @Override
-    public Weather getWeatherDataCity(String city, String country) throws IOException {
-        return jsonParseCityWeather(city, country);
-    }
-
-    //Retrieves weather data in JSON format and assigns it to a String variable.
-    private Weather jsonParseCityWeather(String city, String country) throws IOException {
-
-        this.json = this.weatherDAOImpl.getWeatherDataCity(city, country);
-        setWeatherParameters();
-
-        return this.weather;
-
-    }
-
     @Override
     public Map<String, List<Forecast>> getHourlyWeather(String city, String country) throws IOException {
 
@@ -62,6 +47,18 @@ public class weatherServiceImpl implements weatherService {
         try {
             // Parsing JSON object and retrieving relevant information
             JSONObject obj = new JSONObject(this.json);
+
+
+            //Exception if there're error or occur happend on system backend it will print out in spring system
+            //if "name" not found check used obj JSON obj // iterate
+            JSONObject nameObject = obj.optJSONObject("name");
+            JSONObject countryObject = obj.optJSONObject("country");
+
+            if (nameObject == null) {
+                System.out.println("No, 'name' found in the JSON API URL in weatherServiceImpl");
+            } else if (countryObject ==  null) {
+                System.out.println("No, 'country' found in the JSON API URL in weatherServiceImpl");
+            }
 
             String name = obj.getString("name").toString();
             String country = obj.getJSONObject("sys").getString("country");
@@ -109,6 +106,16 @@ public class weatherServiceImpl implements weatherService {
             DateTime.Property dtp = dt.dayOfWeek();
             String day = dtp.getAsText();
 
+            JSONArray listArray = obj.optJSONArray("list");
+            JSONObject mainObject = obj.optJSONObject("main");
+
+
+            if (listArray == null ) {
+                System.out.println("No, 'List' founnd in the JSON API URL weatherServiceImpl");
+            } else if (mainObject == null) {
+                System.out.println("No 'Main' found in the JSON API URL weatherServiceImpl");
+            }
+
             int count = 0;
 
             for(int i = 0; i < obj.getJSONArray("list").length(); i++) {
@@ -119,11 +126,9 @@ public class weatherServiceImpl implements weatherService {
                 String time = obj.getJSONArray("list").getJSONObject(i).getString("dt_txt").split(" ")[1];
                 double humidity = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getInt("humidity");
                 double pressure = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getInt("pressure");
-                double feels_like = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getInt("feels_like");
-                double temperature = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getInt("temp");
-                double temp_max = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getInt("temp_max");
-                double temp_min = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getInt("temp_min");
-                double wind = obj.getJSONArray("list").getJSONObject(i).getJSONObject("wind").getInt("speed");
+                double temperature = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getDouble("temp");
+                double tempMax = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getDouble("temp_max");
+                double tempMin = obj.getJSONArray("list").getJSONObject(i).getJSONObject("main").getDouble("temp_min");
                 String weather = obj.getJSONArray("list").getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("main");
                 String weatherDesc = obj.getJSONArray("list").getJSONObject(i).getJSONArray("weather").getJSONObject(0).getString("description");
 
@@ -135,12 +140,10 @@ public class weatherServiceImpl implements weatherService {
                 hourlyWeather.setHumidity(humidity);
                 hourlyWeather.setPressure(pressure);
                 hourlyWeather.setTemperature(temperature);
-                hourlyWeather.setFeels_Like(feels_like);
-                hourlyWeather.setTempMax(temp_max);
-                hourlyWeather.setTempMin(temp_min);
+                hourlyWeather.setTempMax(tempMax);
+                hourlyWeather.setTempMin(tempMin);
                 hourlyWeather.setWeather(weather);
                 hourlyWeather.setWeatherDesc(weatherDesc);
-                hourlyWeather.setWind(wind);
 
                 weatherPerThreeHoursPerDay.add(hourlyWeather);
 
@@ -161,6 +164,19 @@ public class weatherServiceImpl implements weatherService {
 
     //Getter City, Country Catch & throws
     //Using for Get City Optional && Get City && get Country
+    @Override
+    public Weather getWeatherDataCity(String city, String country) throws IOException {
+        return jsonParseCityWeather(city, country);
+    }
+
+    //Retrieves weather data in JSON format and assigns it to a String variable.
+    private Weather jsonParseCityWeather(String city, String country) throws IOException {
+
+        this.json = this.weatherDAOImpl.getWeatherDataCity(city, country);
+        setWeatherParameters();
+
+        return this.weather;
+    }
 
     private String getCity(JSONObject obj) throws JSONException {
         String name = obj.getJSONObject("city").getString("name");
