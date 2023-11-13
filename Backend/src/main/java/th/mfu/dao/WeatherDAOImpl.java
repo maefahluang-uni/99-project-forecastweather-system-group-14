@@ -38,22 +38,27 @@ public class WeatherDAOImpl implements weatherDAO {
         return getResponseBody;
     }
 
-    // Able to Retreived with OkHTTPClient method s
+    //Fetch CurrentWeather - Openweathermap API JSON as OkHttp Request client
     public String connectAPICity(String city, String country) throws IOException {
         OkHttpClient client = new OkHttpClient();
         Request request;
 
+        //Condition if there're no city in the parem
         if (city.isEmpty()) {
+            //Show there're "City is empty"
             throw new IllegalArgumentException("City is empty");
         }
 
+        //User can input Country @Parem (Country is {Optional}
         if (country.isEmpty()) {
             request = new Request.Builder()
+                    //Get url without Country?q=
                     .url(OPENWEATHER_API_URL +"/weather?q=" + city + "&appid=" + OPENWEATHER_API_KEY)
                     .get()
                     .build();
         } else {
             request = new Request.Builder()
+                    //Get url with all $City && $Country
                     .url(OPENWEATHER_API_URL + "/weather?q=" + city + "&country=" + country + "&appid="
                             + OPENWEATHER_API_KEY)
                     .get()
@@ -63,18 +68,15 @@ public class WeatherDAOImpl implements weatherDAO {
     }
 
 
-    public String connectFiveDayForecast(String city, String country) throws IOException {
-
+    //Fetch Forecast - Openweathermap API JSON as OkHttp Request client
+    private String connectFiveDayForecast(String city, String country) throws IOException {
         OkHttpClient client = new OkHttpClient();
-
         Request request = new Request.Builder()
-                .url(OPENWEATHER_API_URL + "/forecast?q=" + city + "&country=" + country +"&appid="
-                        + OPENWEATHER_API_KEY)
+                //There're no condition on this method user can add $City && $Country
+                .url(OPENWEATHER_API_URL + "/forecast?q=" + city + "," + country + "&appid=" + OPENWEATHER_API_KEY)
                 .get()
                 .build();
 
         return getFiveDayResponse(client, request);
-
     }
-
 }

@@ -2,8 +2,6 @@ package th.mfu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.boot.web.servlet.error.ErrorController;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
@@ -16,8 +14,6 @@ import th.mfu.model.Forecast;
 import th.mfu.model.Weather;
 import th.mfu.service.weatherServiceImpl;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -25,9 +21,7 @@ import java.util.*;
 
 @Controller
 @RequestMapping("/")
-public class WeatherController implements ErrorController {
-
-    private static final String ERROR_PATH = "/error";
+public class WeatherController{
 
     // TODO: add initBinder for date format
     @InitBinder
@@ -40,25 +34,26 @@ public class WeatherController implements ErrorController {
     weatherServiceImpl WService; // Use the correct variable name
 
     private List<String> days;
-    private List<Forecast> forecast_Data;
+    private List<List<Forecast>> weatherData;
 
-    @RequestMapping("/error")
-    public String handleError(HttpServletRequest request) {
-        Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
-
-        if(status != null) {
-            int statusCode = Integer.valueOf(status.toString());
-
-            if (statusCode == HttpStatus.FORBIDDEN.value()) {
-                return "errorpages/error-403";
-            } else if (statusCode == HttpStatus.NOT_FOUND.value()) {
-                return "errorpages/error-404";
-            } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
-                return "errorpages/error-500";
-            }
-        }
-        return "errorpages/error";
-    }
+    //Still experiment process
+//    @RequestMapping("/error")
+//    public String handleError(HttpServletRequest request) {
+//        Object status = request.getAttribute(RequestDispatcher.ERROR_STATUS_CODE);
+//
+//        if(status != null) {
+//            int statusCode = Integer.valueOf(status.toString());
+//
+//            if (statusCode == HttpStatus.FORBIDDEN.value()) {
+//                return "errorpages/error-403";
+//            } else if (statusCode == HttpStatus.NOT_FOUND.value()) {
+//                return "errorpages/error-404";
+//            } else if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()) {
+//                return "errorpages/error-500";
+//            }
+//        }
+//        return "errorpages/error";
+//    }
 
     //Sets the search page and loads the ISO codes table.
     @RequestMapping("/")
@@ -66,7 +61,7 @@ public class WeatherController implements ErrorController {
 
         model.addAttribute("codes", codes.getAllCountryCodes());
 
-        return "weather_view";
+        return "weather-view";
 
     }
 
@@ -78,10 +73,9 @@ public class WeatherController implements ErrorController {
         Weather weather = WService.getWeatherDataCity(city, country); // Store the returned weather
         if (weather != null) {
             model.addAttribute("weather", weather); // Use model.addAttribute to set attributes
-            return "search_for_city";
+            return "search-for-city";
         } else {
             CountryCodes codes = new CountryCodes();
-            model.addAttribute("error", true);
             model.addAttribute("codes", codes.getAllCountryCodes());
             return "weather-view";
         }
@@ -97,23 +91,25 @@ public class WeatherController implements ErrorController {
 
         Map<String, List<Forecast>> fiveDay = this.WService.getHourlyWeather(city, country);
 
+        //Check condition if there are none or empty
         if (!fiveDay.isEmpty()) {
             getDays(fiveDay);
             getDataForEachDay(fiveDay);
             model.addAttribute("city", city);
             model.addAttribute("days", this.days);
-            model.addAttribute("forecast_Date", this.forecast_Data);
+            model.addAttribute("weather_data", this.weatherData);
             return "forecast-view"; // Return the appropriate view
         } else {
             CountryCodes codes = new CountryCodes();
-            model.addAttribute("error", true);
             model.addAttribute("codes", codes.getAllCountryCodes());
-            return "weather-view"; // Return the appropriate view
+            // Return the appropriate view
+            return "weather-view";
         }
     }
 
+    //Pull Implement method
     private void getDataForEachDay(Map<String, List<Forecast>> fiveDay) {
-        this.forecast_Data = new ArrayList<>();
+        this.weatherData = new ArrayList<>();
 
         for (String list : fiveDay.keySet()) {
             this.days.add(list);
