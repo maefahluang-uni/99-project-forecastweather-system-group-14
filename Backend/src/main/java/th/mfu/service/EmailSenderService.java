@@ -1,15 +1,26 @@
 package th.mfu.service;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.stereotype.Service;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Service;
 
 
-@Servie
+@Service
 public class EmailSenderService {
 
      @Autowired
-     private JavamailSender javaMailSender;
+     private JavaMailSender javaMailSender;
 
      public void sendEmail(String toEmail, String subject, String body){
           SimpleMailMessage message = new SimpleMailMessage();
