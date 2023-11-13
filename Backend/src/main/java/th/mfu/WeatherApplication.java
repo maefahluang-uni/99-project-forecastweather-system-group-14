@@ -7,7 +7,13 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 
 @SpringBootApplication
 public class WeatherApplication extends SpringBootServletInitializer {
+    @Autowired
+    private EmailSenderService emailSenderService;
     public static void main(String[] args) {
         SpringApplication.run(WeatherApplication.class, args);
+    }
+    @EventListener(ApplicationReadyEvent.class)
+    public void triggerMail(){
+        senderService.sendEmail("mail","subject","body");
     }
 }
