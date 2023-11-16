@@ -82,21 +82,28 @@
 			<!-- Temperature, weather description, time, date, location coordinates -->
 			<h1 class="Current-weather">Current Weather</h1><br>
 			<h4>
-				<img src="/img/temperature.jpg" width=30 alt="Icon" id="temperature-icon" class="temperature-icon">
+				<img src="img/temp.png" width=30 alt="Icon" id="temp-icon" class="temp-icon">
 				<span id="temperature">Temperature: ${weather.temperature}</span>
 				<span id="celsius">&deg;C</span>
 			</h4>
 			<h4>
-				<img src="/img/cloud.jpg"width=30 alt="Icon" id="cloud-icon" class="cloud-icon">
+				<img src="img/cloud.png" width=30 alt="Icon" id="cloud-icon" class="cloud-icon">
 				Description: <span id="weather-description">${weather.weather}</span>
 			</h4>
-			<h4 id="time">Time:
+			<h4> 
+				<img src="img/clock.png" width=30 alt="Icon" id="time-icon" class="time-icon">
+				<span id="time">Time:></span>
 				<span id="currentTime"></span>
 			</h4>
-			<h4 id="date">Date:
+			<h4>
+				<img src="img/calendar.png" width=30 alt="Icon" id="date-icon" class="date-icon"> 
+				<span id="date">Date:></span>
 				<span id="currentDate"></span>
 			</h4>
-			<h4>Location: <span id="location">${weather.country}, ${weather.city}</span></h4>
+			<h4>
+				<img src="img/location.png" width=30 alt="Icon" id="location-icon" class="location-icon">
+				Location: <span id="location">${weather.country}, ${weather.city}</span>
+			</h4>
 		</div>
 	</div>
 
