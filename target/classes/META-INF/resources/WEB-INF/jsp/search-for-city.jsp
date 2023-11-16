@@ -81,8 +81,15 @@
 		<div class="card-body">
 			<!-- Temperature, weather description, time, date, location coordinates -->
 			<h1 class="Current-weather">Current Weather</h1><br>
-			<h4 id="temperature">Temperature: ${weather.temperature} <span id="celsius">&deg;C</span></h4>
-			<h4>Description: <span id="weather-description">${weather.weather}</span></h4>
+			<h4>
+				<img src="/img/temperature.jpg" width=30 alt="Icon" id="temperature-icon" class="temperature-icon">
+				<span id="temperature">Temperature: ${weather.temperature}</span>
+				<span id="celsius">&deg;C</span>
+			</h4>
+			<h4>
+				<img src="/img/cloud.jpg"width=30 alt="Icon" id="cloud-icon" class="cloud-icon">
+				Description: <span id="weather-description">${weather.weather}</span>
+			</h4>
 			<h4 id="time">Time:
 				<span id="currentTime"></span>
 			</h4>
