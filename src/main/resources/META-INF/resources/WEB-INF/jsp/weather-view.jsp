@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" type="image/x-icon" href="https://image.ibb.co/fOur3b/favicon.png"/>
 	<meta name="theme-color" content="#1885ed">
-	<title>Bricks.io - Weather - Homepage</title>
+	<title>SEEZ - Weather - Homepage</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/css/scroll_behaviour.css">
 	<style>
@@ -14,14 +14,13 @@
 			margin: 0;
 			padding: 0;
 			font-family: 'Lato', sans-serif;
-			color: #1f4568;
+			color: #3a4b5b;
 		}
 
 		body {
-			background-image: url("https://image.ibb.co/de6JzG/bitmap_1_1.png");
+			background: url('/img/mian login 2 3.png') no-repeat center center fixed;
 			background-size: cover;
-			background-repeat: no-repeat;
-			background-position: center;
+			color: #000000; /* Set default text color to white */
 		}
 
 		.container {
@@ -41,7 +40,7 @@
 		}
 
 		.login-banner {
-			background-color: #15ffaa;
+			background-color: rgb(92, 174, 237);
 			text-align: center;
 			padding: 10px;
 			border-radius: 8px 8px 0 0;
@@ -68,7 +67,7 @@
 		}
 
 		.header__el--blue{
-			background-color:#3a9fff;
+			background-color:#22629e;
 		}
 
 		.header__img {
@@ -106,15 +105,23 @@
 	</style>
 </head>
 <body>
-<header class="header">
-	<div class="container header__container">
-		<div class="header__logo"><img class="header__img" src="https://image.ibb.co/kcVou6/path3000.png"> <h1 class="header__title">Bricks<span class="header__light">.io</span></h1></div>
-		<button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="/">
+			<!-- Your icon and description -->
+			<img src="/img/img.png" width= class="d-inline-block align-top" alt="">
+			OpenWeatherMap-API Provider
+		</a>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Sign Up</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 		<div class="header__menu">
 			<nav id="navbar" class="header__nav collapse">
 				<ul class="header__elenco">

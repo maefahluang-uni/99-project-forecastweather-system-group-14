@@ -1,9 +1,0 @@
-th\mfu\model\Forecast.class
-th\mfu\dao\WeatherDAO.class
-th\mfu\WeatherApplication.class
-th\mfu\model\Weather.class
-th\mfu\countryCodes\CountryCodes.class
-th\mfu\service\WeatherService.class
-th\mfu\dao\WeatherDAOImpl.class
-th\mfu\service\WeatherServiceImpl.class
-th\mfu\controller\WeatherController.class
