@@ -111,7 +111,7 @@
 			<p class="Current-weather">&nbsp;&nbsp;<i class="far fa-calendar-alt">&nbsp;&nbsp;</i> Date:&nbsp <span id="currentDate"></span></p>
 			<p class="Current-weather">&nbsp;&nbsp;<i class="fas fa-map-marker-alt">&nbsp;&nbsp;</i> Location:&nbsp <span id="location">${weather.country}, ${weather.city}</span></p>
 		</div>
-		<div id="hidden-weather-icon" style="display: none;">${weather.icon}</div>
+		<div id="hidden-weather-icon" style="display: none;">${weather.weatherIcon}</div>
 		<div id="weather-icon"></div>
 
 	</div>
@@ -284,7 +284,7 @@
 	}
 
 	// Call the function with the actual weather.icon code
-	var iconCode = "${weather.icon}";
+	var iconCode = "${weather.weatherIcon}";
 	var iconClass = getWeatherIconClass(iconCode);
 
 	// Function to set the background image based on the icon class
