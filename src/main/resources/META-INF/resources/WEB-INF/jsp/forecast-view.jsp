@@ -16,6 +16,22 @@
 			background-size: cover;
 			color: #000000; /* Set default text color to white */
 		}
+		.button {
+			background-color: rgb(151, 150, 149);
+			border: none;
+			color: rgb(0, 0, 0);
+			padding: 2px 20px;
+			text-align: center;
+			font-size: 20px;
+			margin: 4px 2px;
+			opacity: 0.6;
+			transition: 0.3s;
+			display: inline-block;
+			text-decoration: none;
+			cursor: pointer;
+		   }
+		   
+		   .button:hover {opacity: 1}
 	</style>	  
 </head>
 <body>
@@ -42,7 +58,7 @@
 		<tbody>
 		<tr>
 			<td>
-				<button class = "btn btn-info btn-lg" style = "width: 100%;" value = "${days[0]}" onclick = "showDay0(value)">
+				<button class = "button" style = "width: 100%;" value = "${days[0]}" onclick = "showDay0(value)">
 					${days[0]}
 					<p style = "text-align: center; font-size: 15px; padding-top: 5px; padding-bottom: 5px;">Today</p>
 				</button>
