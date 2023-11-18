@@ -18,10 +18,13 @@ public class WeatherServiceImpl implements WeatherService {
     @Autowired
     WeatherDAO wDAO;
 
+    //
+
     private String json;
     private Weather weather;
     private Map<String, List<Forecast>> weatherForFiveDays;
 //    private Airpollution air;
+
 
     //Retrieves current weather data in JSON Format and assigns it tp String var
     @Override
@@ -77,6 +80,7 @@ public class WeatherServiceImpl implements WeatherService {
             double timeZone = obj.getDouble("timezone");
             String weather = obj.getJSONArray("weather").getJSONObject(0).getString("main");
             String weatherDesc = obj.getJSONArray("weather").getJSONObject(0).getString("description");
+            String weatherIcon = obj.getJSONArray("weather").getJSONObject(0).getString("icon");
 
             //Creating the Weather object
             this.weather = new Weather();
@@ -98,6 +102,7 @@ public class WeatherServiceImpl implements WeatherService {
             this.weather.setTimeZone(timeZone);
             this.weather.setWeather(weather);
             this.weather.setWeatherDesc(weatherDesc);
+            this.weather.setWeatherIcon(weatherIcon);
 
         }catch(Exception e) {
             e.printStackTrace();

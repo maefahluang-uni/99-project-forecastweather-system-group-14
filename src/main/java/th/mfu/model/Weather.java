@@ -9,7 +9,6 @@ public class Weather {
     private static final Integer CONVERT_SECONDS_TO_HOURS = 3600;
 
     private DecimalFormat df;
-
     private String city;
     private String country;
     private String countryISOCode;
@@ -23,6 +22,36 @@ public class Weather {
     private double pressure;
     private double humidity;
     private double wind;
+    private String weatherIcon;
+    private int deg;
+    private String sunriseTime;
+    private String sunsetTime;
+
+    public String getSunriseTime() {
+        return sunriseTime;
+    }
+
+    public void setSunriseTime(String sunriseTime) {
+        this.sunriseTime = sunriseTime;
+    }
+
+    public String getSunsetTime() {
+        return sunsetTime;
+    }
+
+    public void setSunsetTime(String sunsetTime) {
+        this.sunsetTime = sunsetTime;
+    }
+
+
+
+    public String getWeatherIcon() {
+        return weatherIcon;
+    }
+
+    public void setWeatherIcon(String weatherIcon) {
+        this.weatherIcon = weatherIcon;
+    }
 
     public int getDeg() {
         return deg;
@@ -31,27 +60,6 @@ public class Weather {
     public void setDeg(int deg) {
         this.deg = deg;
     }
-
-    private int deg;
-
-    public String getLon() {
-        return lon;
-    }
-
-    public void setLon(String lon) {
-        this.lon = lon;
-    }
-
-    public String getLat() {
-        return lat;
-    }
-
-    public void setLat(String lat) {
-        this.lat = lat;
-    }
-
-    private String lon;
-    private String lat;
 
     public double getWind() {
         return wind;
@@ -65,7 +73,6 @@ public class Weather {
         this.df = new DecimalFormat("#.00");
         this.df.setRoundingMode(RoundingMode.CEILING);
     }
-
     public String getCountry() {
         return country;
     }
@@ -145,7 +152,6 @@ public class Weather {
     public String getCountryISOCode() {
         return countryISOCode;
     }
-
     public void setCountryISOCode(String country) {
         this.countryISOCode = country;
     }
