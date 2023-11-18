@@ -12,19 +12,29 @@
 		  crossorigin="anonymous">
 	<style>
 		body {
-			background: url('/img/mian login 2 3.png') no-repeat center center fixed;
+			background: url('/img/Background\ current.jpg') no-repeat center center fixed;
 			background-size: cover;
 			color: #000000; /* Set default text color to white */
 		}
 	</style>	  
 </head>
 <body>
-
-<header style = "background-color: #5caeed; text-align: center;">
-	<strong style = "font-size: 30px;">${city}'s five day weather forecast</strong><br/>
-	<a href = "/" class = "btn btn-link">Return to weather search</a>
-</header>
-
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="/">
+			<!-- Your icon and description -->
+			<img src="/img/img.png" width= class="d-inline-block align-top" alt="">
+		</a>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link" href="#">Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Sign Up</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 <div class = "card-body">
 
 	<table class = "table table-hover table-sm" style = "table-layout: fixed; width: 100%;">
@@ -69,7 +79,7 @@
 	<table class = "table table-striped table-sm" style = "table-layout: fixed; width: 100%;">
 
 		<thead>
-		<tr style = "background-color: #ffffff; color: #ffffff;">
+		<tr style = "background-color: #262626; color: #ffffff;">
 			<td id = "current_day" style = "background-color: #5caeed; color: #150015">
 				${days[0]} (Today)
 			</td>
