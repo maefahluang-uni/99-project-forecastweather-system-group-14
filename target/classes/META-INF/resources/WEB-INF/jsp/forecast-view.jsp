@@ -10,11 +10,17 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 		  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 		  crossorigin="anonymous">
-
+	<style>
+		body {
+			background: url('/img/mian login 2 3.png') no-repeat center center fixed;
+			background-size: cover;
+			color: #000000; /* Set default text color to white */
+		}
+	</style>	  
 </head>
 <body>
 
-<header style = "background-color: #15ffaa; text-align: center;">
+<header style = "background-color: #5caeed; text-align: center;">
 	<strong style = "font-size: 30px;">${city}'s five day weather forecast</strong><br/>
 	<a href = "/" class = "btn btn-link">Return to weather search</a>
 </header>
@@ -64,7 +70,7 @@
 
 		<thead>
 		<tr style = "background-color: #000000; color: #ffffff;">
-			<td id = "current_day" style = "background-color: #15ffaa; color: #150015">
+			<td id = "current_day" style = "background-color: #5caeed; color: #150015">
 				${days[0]} (Today)
 			</td>
 			<td>Country</td>
