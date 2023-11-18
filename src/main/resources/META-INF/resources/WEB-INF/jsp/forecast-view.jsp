@@ -69,7 +69,7 @@
 	<table class = "table table-striped table-sm" style = "table-layout: fixed; width: 100%;">
 
 		<thead>
-		<tr style = "background-color: #000000; color: #ffffff;">
+		<tr style = "background-color: #ffffff; color: #ffffff;">
 			<td id = "current_day" style = "background-color: #5caeed; color: #150015">
 				${days[0]} (Today)
 			</td>
