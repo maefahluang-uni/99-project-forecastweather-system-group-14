@@ -40,7 +40,7 @@
 		}
 
 		.login-banner {
-			background-color: rgb(92, 174, 237);
+			background-color: #5caeed;
 			text-align: center;
 			padding: 10px;
 			border-radius: 8px 8px 0 0;
