@@ -22,8 +22,8 @@
   - *Role:* Backend
   - *ID:* [6531503117]
  
-- **Mr. Phumiphat Wongsathit**
-  - *Role:* Backend
+- **Mr. Ramet Naochompoo**
+  - *Role:* Fronted
   - *ID:* [6531503117]
 
 ## Project Description
