@@ -24,7 +24,7 @@
 		}
 
 		body {
-			background-image: url('img/Backgroudsearching.jpg');
+			background-image: url('img/Backgroudsearching.png');
 			background-size: cover;
 			background-repeat: no-repeat;
 			width: 100%;
