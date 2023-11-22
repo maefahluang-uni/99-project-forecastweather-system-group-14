@@ -23,8 +23,8 @@
   - *ID:* [6531503117]
  
 - **Mr. Ramet Naochompoo**
-  - *Role:* Fronted
-  - *ID:* [6531503117]
+  - *Role:* Frontend
+  - *ID:* [6531503120]
 
 ## Project Description
 
