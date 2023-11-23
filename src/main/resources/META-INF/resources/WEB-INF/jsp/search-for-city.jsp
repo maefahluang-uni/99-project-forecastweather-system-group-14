@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-		 pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,18 +6,58 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Weather Forecast Dashboard</title>
+	<!-- Include Tailwind CSS and Material UI styles -->
+	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+	<!-- Font Awesome Icons -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<!-- Font Awesome Icons -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 	<!-- Your custom CSS -->
 	<style>
-		/* Your custom styles go here */
-
 		body {
-			background: url('/img/mian login 2 3.png') no-repeat center center fixed;
-			background-size: cover;
-			color: #ffffff; /* Set default text color to white */
+			font-family: 'Inter', sans-serif;
+		}
+
+		@media only screen and (max-width: 480px) {
+			body {
+				/* Adjust styles for screens up to 480px width */
+			}
+		}
+
+		@media only screen and (min-width: 481px) and (max-width: 767px) {
+			/* Styles for screens between 481px and 767px width */
+		}
+
+		@media only screen and (min-width: 768px) and (max-width: 991px) {
+			/* Styles for screens between 768px and 991px width */
+		}
+
+		@media only screen and (min-width: 992px) and (max-width: 1199px) {
+			/* Styles for screens between 992px and 1199px width */
+		}
+
+		@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+			/* Styles for screens between 1200px and 1399px width */
+		}
+
+		@media only screen and (min-width: 1400px) and (max-width: 1799px) {
+			/* Styles for screens between 1400px and 1799px width */
+		}
+
+		@media only screen and (min-width: 1800px) {
+			/* Styles for screens larger than 1800px width */
+		}
+
+		@media only screen and (min-width: 2560px) {
+			/* Styles for 4K resolution screens */
+		}
+
+
+		.text-black {
+			color: #000 !important;
 		}
 
 		.navbar {
@@ -48,7 +87,6 @@
 			color: #ffffff; /* Set button text color to white */
 		}
 
-
 		.card-body {
 			padding: 20px; /* Adjust as needed for spacing between sections */
 		}
@@ -57,27 +95,13 @@
 			margin-bottom: 10px; /* Adjust as needed for spacing between elements */
 		}
 
-		.Current-weather {
-			margin-right:10px;
+		#map {
+			height: 400px;
 		}
-
-		#weather-icon {
-			width: 100px; /* Set the width as needed */
-			height: 100px; /* Set the height as needed */
-			background-size: contain; /* Ensure the background image is contained within the element */
-			background-repeat: no-repeat; /* Prevent the background image from repeating */
-			background-position: center; /* Center the background image */
-		}
-
-
-
-
-		/* Add more styles as needed */
-
 	</style>
 </head>
 
-<body>
+<body class="bg-cover bg-center" style="background-image: url('/img/mian login 2 3.png'); color: #ffffff;">
 
 <!-- Navigation Bar -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -98,100 +122,89 @@
 	</div>
 </nav>
 
-<div class="container mt-4">
+<!-- Main Content Area using Flexbox -->
+<div class="container mx-auto py-8 flex">
 
-	<!-- First Big Box -->
-	<div class="card mb-4">
-		<div class="card-body">
-			<!-- Temperature, weather description, time, date, location &nbsp;&nbsp;coordinates -->
-			<h1>Current Weather</h1><br>
-			<p class="Current-weather">&nbsp;&nbsp;<i class="fas fa-thermometer-half" style="margin-left: 5px;">&nbsp;&nbsp;</i> Temperature: ${weather.temperature} <span id="celsius">&deg;C</span></p>
-			<p class="Current-weather">&nbsp;&nbsp;<i class="fas fa-comment-alt">&nbsp;&nbsp;</i> Description: <span id="weather-description">${weather.weather}</span></p>
-			<p class="Current-weather">&nbsp;&nbsp;<i class="far fa-clock">&nbsp;&nbsp;</i> Time:&nbsp&nbsp<span id="currentTime"></span></p>
-			<p class="Current-weather">&nbsp;&nbsp;<i class="far fa-calendar-alt">&nbsp;&nbsp;</i> Date:&nbsp <span id="currentDate"></span></p>
-			<p class="Current-weather">&nbsp;&nbsp;<i class="fas fa-map-marker-alt">&nbsp;&nbsp;</i> Location:&nbsp <span id="location">${weather.country}, ${weather.city}</span></p>
+	<!-- Left Side: 35% Width -->
+	<div class="w-35 pr-8">
+
+		<!-- First Huge Box {1} -->
+		<div class="bg-gray-200 bg-opacity-75 rounded p-4 mb-4">
+			<h1 class="text-2xl font-bold mb-2 text-black">Current Weather</h1>
+			<p class="mb-2"><i class="fas fa-thermometer-half mr-2 text-black"></i> Temperature: ${weather.temperature} <span class="text-gray-600">&deg;C</span></p>
+			<p class="mb-2"><i class="fas fa-cloud mr-2 text-black"></i> Description: <span id="weather-description">${weather.weather}</span></p>
+			<p class="mb-2"><i class="far fa-clock mr-2 text-black"></i> Time: <span id="currentTime"></span></p>
+			<p class="mb-2"><i class="far fa-calendar-alt mr-2 text-black"></i> Date: <span id="currentDate"></span></p>
+			<p><i class="fas fa-map-marker-alt mr-2 text-black"></i> Location: <span id="location">${weather.country}, ${weather.city}</span></p>
 		</div>
-		<div id="hidden-weather-icon" style="display: none;">${weather.weatherIcon}</div>
-		<div id="weather-icon"></div>
 
-	</div>
-
-
-
-
-	<!-- Second Big Box -->
-	<div class="card mb-4">
-		<div class="card-body">
-			<h2 class="card-title">Today's Highlights</h2>
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<div class="card">
-						<div class="card-body">
-							<p><i class="fas fa-thermometer-half"></i> Temperature: ${weather.temperature} <span id="celsius">&deg;C</span></p>
-							<p><i class="fas fa-thermometer-half"></i> Feels Like: ${weather.tempFeelsLike} <span id="celsius">&deg;C</span></p>
-							<p><i class="fas fa-thermometer-full"></i> Maximum temperature: ${weather.tempMax} <span id="celsius">&deg;C</span></p>
-							<p><i class="fas fa-thermometer-empty"></i> Minimum temperature: ${weather.tempMin} <span id="celsius">&deg;C</span></p>
-						</div>
-					</div>
-				</div>
-				<!-- Small box for each like it should has each box contain on the big box for humidity, pressure, degree, description -->
-				<div class="col-md-6 mb-3">
-					<div class="card">
-						<div class="card-body">
-							<p><i class="fas fa-tint"></i> Humidity: <span id="humidity">${weather.humidity} &nbsp; %</span></p>
-							<p><i class="fas fa-tachometer-alt"></i> Pressure: <span id="pressure">${weather.pressure}</span></p>
-							<p><i class="fas fa-compass"></i> Degree: ${weather.deg}<span id="degree">&deg;C</span></p>
-							<p><i class="fas fa-comment-alt"></i> Description: <span id="description">${weather.weatherDesc}</span></p>
-						</div>
-					</div>
-				</div>
+		<!-- Search Bar and Buttons -->
+		<div class="mb-4">
+			<div class="flex mb-2">
+				<input class="w-1/2 mr-2 p-2 border border-gray-400" name="city" type="text" placeholder="Search City" required/>
+				<input class="w-1/2 p-2 border border-gray-400" id="country" name="country" type="text" value="" placeholder="ISO code"/>
 			</div>
 		</div>
+
 	</div>
 
-	<!-- Third Big Box -->
-	<div class="card mb-4">
-		<div class="card-body">
-			<h2 class="card-title">Air Quality</h2>
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<div class="card">
-						<div class="card-body">
-							<p><i class="fas fa-smog"></i> PM2.5: <span id="pm25">3.9</span></p>
-							<p><i class="fas fa-wind"></i> Wind speed: <span id="so2">${weather.wind} &nbsp; m/h </span></p>
-						</div>
-					</div>
+
+	<!-- Right Side: 75% Width -->
+	<div class="w-75 pl-8">
+
+		<!-- Top Right Side {2} -->
+		<div class="flex mb-4">
+
+			<!-- Medium Boxes {2.1m, 2.2m} -->
+			<div class="w-1/2 pr-4">
+				<div class="bg-gray-200 bg-opacity-75 rounded p-4 mb-4">
+					<p class="mb-2"><i class="fas fa-thermometer-half mr-2 text-black"></i> Temperature: ${weather.temperature} <span class="text-gray-600">&deg;C</span></p>
+					<p class="mb-2"><i class="fas fa-tint mr-2 text-black"></i> Humidity: ${weather.humidity} <span class="text-gray-600">&nbsp;%</span></p>
+					<p class="mb-2"><i class="fas fa-tachometer-alt mr-2 text-black"></i> Pressure: ${weather.pressure} hPa</p>
+					<p class="mb-2"><i class="fas fa-compass mr-2 text-black"></i> Wind Degree: ${weather.deg}<span class="text-gray-600">&deg;</span></p>
+					<p class="mb-2"><i class="fas fa-comment-alt mr-2 text-black"></i> Description: <span id="weather-description">${weather.weather}</span></p>
 				</div>
 			</div>
-		</div>
-	</div>
 
-	<!-- Search Input -->
-	<div class="row">
-		<div class="col-md-6 mb-3">
-			<input class="form-control" name="city" type="text" placeholder="Search City" required/>
-		</div>
-		<div class="col-md-6 mb-3">
-			<input class="form-control" id="country" name="country" type="text" value="" placeholder="Your country's ISO code (not required)"/>
-		</div>
-	</div>
+			<div class="w-1/2 pl-4">
+				<div class="bg-gray-200 bg-opacity-75 rounded p-4 mb-4">
+					<p class="mb-2"><i class="fas fa-temperature-high mr-2 text-black"></i> Maximum temperature: ${weather.tempMax} <span class="text-gray-600">&deg;C</span></p>
+					<p class="mb-2"><i class="fas fa-temperature-low mr-2 text-black"></i> Minimum temperature: ${weather.tempMin} <span class="text-gray-600">&deg;C</span></p>
+					<p><i class="fas fa-wind mr-2 text-black"></i> Wind speed: ${weather.wind} m/h</p>
+				</div>
+			</div>
 
-	<!-- Search Buttons -->
-	<div class="row">
-		<div class="col-md-6 mb-3">
-			<button type="submit" class="btn btn-primary" formaction="/current/weather" name="current" class="btn btn-success btn-sm">Current Weather</button>
+			<!-- Map Container -->
+			<div id="map"></div>
+
 		</div>
-		<div class="col-md-6 mb-3">
-			<button type="submit" class="btn btn-info" formaction="/five_day/forecast" name="five_day" class="btn btn-info btn-sm">Search Forecast</button>
+
+
+		<!-- Low Right Side {3} -->
+		<div class="bg-gray-200 bg-opacity-75 rounded p-4">
+			<p class="mb-2"><i class="fas fa-smog mr-2 text-black"></i> PM2.5: <span id="pm25">${air.pm2_5}</span></p>
+			<p class="mb-2"><i class="fas fa-cloud mr-2 text-black"></i> CO: <span>${air.co} </span></p>
+			<p class="mb-2"><i class="fas fa-wind mr-2 text-black"></i> No2: <span> ${air.no2} </span></p>
+			<p class="mb-2"><i class="fas fa-wind mr-2 text-black"></i> So2: <span> ${air.so2} </span></p>
+			<p class="mb-2"><i class="fas fa-smog mr-2 text-black"></i> PM2.5: <span> ${air.pm2_5}</span></p>
+			<p class="mb-2"><i class="fas fa-wind mr-2 text-black"></i> PM10: <span> ${air.pm10} </span></p>
+			<p class="mb-2"><i class="fas fa-wind mr-2 text-black"></i> SUM AQI: <span> ${air.aqi} AQI </span></p>
+			<p><i class="fas fa-wind mr-2 text-black"></i> Wind speed: <span id="so2">${weather.wind} m/h </span></p>
 		</div>
 	</div>
 
 </div>
 
-<!-- Bootstrap JS and dependencies (Popper.js and jQuery) -->
+</div>
+
+<!-- Include Bootstrap JS and dependencies (Popper.js and jQuery) -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- Google Maps API Script -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0nrwhMXXr7BfFCNk4RQ2aiplH9QJgmVo&callback=initMap"
+		async defer></script>
+
 <!-- Your custom JavaScript or link to external scripts -->
 <script src="path/to/your/custom.js"></script>
 
@@ -222,6 +235,7 @@
 	// Update the current time every second
 	setInterval(updateCurrentTime, 1000);
 
+	// Function to update the current date
 	function updateCurrentDate() {
 		var currentDateElement = document.getElementById('currentDate');
 		var currentDate = new Date();
@@ -246,62 +260,50 @@
 	// Update the current date every second
 	setInterval(updateCurrentDate, 1000);
 
-	function updateCurrentDay() {
-		var currentDayElement = document.getElementById('currentDay');
-		var currentDate = new Date();
-		var day = currentDate.toLocaleDateString('en-US', { weekday: 'long' });
+	//Google map geolocation
+	var map;
 
-		// Set the content of the element
-		currentDayElement.innerHTML = day;
+	function initMap(latitude, longitude) {
+		map = new google.maps.Map(document.getElementById('map'), {
+			center: { lat: latitude, lng: longitude },
+			zoom: 12
+		});
 	}
 
-	// Call the function initially
-	updateCurrentDay();
+	// Fetch weather data and then initialize the map
+	function fetchDataAndInitializeMap() {
+		// Assuming you have a function to fetch weather data, replace it with your actual implementation
+		// For demonstration purposes, I'm using a placeholder function `fetchWeatherData`
+		fetchWeatherData().then(weatherData => {
+			// Extract latitude and longitude from the weather data
+			var latitude = weatherData.lat;
+			var longitude = weatherData.lon;
 
-	// Update the current day every second (optional)
-	// setInterval(updateCurrentDay, 1000);
-
-	//Icon condition for changes as ICON Provide code to changes
-	// Function to set the background image based on the icon code
-	// Function to set the background image based on the icon code
-	// Mapping of weather icon codes to Font Awesome classes
-	const iconMapping = {
-		'01d': 'fas fa-sun',
-		'01n': 'fas fa-moon',
-		'02d': 'fas fa-cloud-sun',
-		'02n': 'fas fa-cloud-moon',
-		'03d': 'fas fa-cloud',
-		'03n': 'fas fa-cloud',
-		'04d': 'fas fa-cloud',
-		'04n': 'fas fa-cloud',
-		// Add more mappings as needed
-	};
-
-	// Function to get Font Awesome class based on weather icon code
-	function getWeatherIconClass(iconCode) {
-		// Default to a generic icon if the code is not in the mapping
-		return iconMapping[iconCode] || 'fas fa-question';
+			// Call initMap with the obtained coordinates
+			initMap(latitude, longitude);
+		});
 	}
 
-	// Call the function with the actual weather.icon code
-	var iconCode = "${weather.weatherIcon}";
-	var iconClass = getWeatherIconClass(iconCode);
+	// Call the function to fetch data and initialize the map
+	fetchDataAndInitializeMap();
 
-	// Function to set the background image based on the icon class
-	// Function to set the weather icon based on the icon class
-	function setWeatherIcon() {
-		var iconElement = document.getElementById('weather-icon');
-		// Set the innerHTML to the HTML code for the Font Awesome icon
-		iconElement.innerHTML = `<i class="${iconClass}"></i>`;
+	// Function to fetch weather data (replace it with your actual implementation)
+	function fetchWeatherData() {
+		// Simulating asynchronous fetch using a Promise
+		return new Promise(resolve => {
+			// Replace the setTimeout with your actual API call
+			setTimeout(() => {
+				// Sample weather data (replace it with actual API response)
+				var weatherData = {
+					lat: ${weather.lat},
+					lon: ${weather.lon}
+				};
+				resolve(weatherData);
+			}, 1000); // Simulating a 1-second delay
+		});
 	}
-
-	// Call the function to set the weather icon
-	setWeatherIcon();
-
-
-
 </script>
+
 </body>
 
 </html>
-

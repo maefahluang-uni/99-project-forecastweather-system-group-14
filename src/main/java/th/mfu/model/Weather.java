@@ -27,6 +27,25 @@ public class Weather {
     private String sunriseTime;
     private String sunsetTime;
 
+    public Double getLat() {
+        return lat;
+    }
+
+    public void setLat(Double lat) {
+        this.lat = lat;
+    }
+
+    public Double getLon() {
+        return lon;
+    }
+
+    public void setLon(Double lon) {
+        this.lon = lon;
+    }
+
+    private Double lat;
+    private Double lon;
+
     public String getSunriseTime() {
         return sunriseTime;
     }
@@ -43,11 +62,6 @@ public class Weather {
         this.sunsetTime = sunsetTime;
     }
 
-
-
-    public String getWeatherIcon() {
-        return weatherIcon;
-    }
 
     public void setWeatherIcon(String weatherIcon) {
         this.weatherIcon = weatherIcon;
@@ -73,6 +87,7 @@ public class Weather {
         this.df = new DecimalFormat("#.00");
         this.df.setRoundingMode(RoundingMode.CEILING);
     }
+
     public String getCountry() {
         return country;
     }
@@ -86,7 +101,7 @@ public class Weather {
     }
 
     public void setTimeZone(double timeZone) {
-        this.timeZone = timeZone/CONVERT_SECONDS_TO_HOURS;
+        this.timeZone = timeZone / CONVERT_SECONDS_TO_HOURS;
     }
 
     public double getTemperature() {
@@ -152,6 +167,7 @@ public class Weather {
     public String getCountryISOCode() {
         return countryISOCode;
     }
+
     public void setCountryISOCode(String country) {
         this.countryISOCode = country;
     }
@@ -171,4 +187,5 @@ public class Weather {
     public void setWeatherDesc(String weatherDesc) {
         this.weatherDesc = weatherDesc;
     }
+
 }

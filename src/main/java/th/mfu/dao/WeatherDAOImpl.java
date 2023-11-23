@@ -28,11 +28,11 @@ public class WeatherDAOImpl implements WeatherDAO {
         return connectFiveDayForecast(city, country);
     }
 
-//    //Air pollution Data API
-//    @Override
-//    public String getAirPollutionData(String lat, String lon) throws IOException {
-//        return connectAirPollution(lat,lon);
-//    }
+    //Air pollution Data API
+    @Override
+    public String getAirPollutionData(String city, String country) throws IOException {
+        return connectAirPollution(city,country);
+    }
 
     // Retreived Data JSON From OpenWeatherMap-API
 
@@ -50,12 +50,12 @@ public class WeatherDAOImpl implements WeatherDAO {
         return getResponseBody;
     }
 
-//    //Air Pollution
-//    public String getAirPollutionResponse(OkHttpClient client, Request request) throws IOException {
-//        Response response = client.newCall(request).execute();
-//        String getResponseBody = response.body().string();
-//        return getResponseBody;
-//    }
+    //Air Pollution
+    public String getAirPollutionResponse(OkHttpClient client, Request request) throws IOException {
+        Response response = client.newCall(request).execute();
+        String getResponseBody = response.body().string();
+        return getResponseBody;
+    }
 
     //Fetch CurrentWeather - Openweathermap API JSON as OkHttp Request client
 
@@ -104,25 +104,42 @@ public class WeatherDAOImpl implements WeatherDAO {
     }
 
     //Air Pollution Connect API
+    private String connectAirPollution(String city, String country) {
+        OkHttpClient client = new OkHttpClient();
 
-//    private String connectAirPollution(String lat, String lon) throws IOException {
-//        OkHttpClient client = new OkHttpClient();
-//        Request request = new Request.Builder()
-//                .url(OPENWEATHER_API_URL + "/air_pollution?q=" + lat + "," + lon + "&appid=" + OPENWEATHER_API_KEY)
-//                .get()
-//                .build();
-//        return getAirPollutionResponse(client, request);
-//    }
-//
-//    public void SetLatLonUser(){
-//        Weather weather = new Weather();
-//
-//        try {
-//            String airPollutionData = connectAirPollution(weather.getLat(), weather.getLon());
-//            // Do something with the air pollution data
-//        } catch (IOException e) {
-//            // Handle IOException
-//            e.printStackTrace();
-//        }
-//    }
+        try {
+            Request request = new Request.Builder()
+                    .url("https://air-quality-by-api-ninjas.p.rapidapi.com/v1/airquality?city="+city+"&country="+country)
+                    .get()
+                    .addHeader("X-RapidAPI-Key", "68336de05dmshd5fea6fde168a3bp1ce369jsna0ff39238f99")
+                    .addHeader("X-RapidAPI-Host", "air-quality-by-api-ninjas.p.rapidapi.com")
+                    .build();
+
+            Response response = client.newCall(request).execute();
+
+            // Check the HTTP response status code
+            if (response.isSuccessful()) {
+                return getAirPollutionResponse(response);
+            } else {
+                System.out.println("HTTP request failed with status code: " + response.code());
+                // You may want to handle the failure case accordingly
+                return null;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle IOException (e.g., network issues) appropriately
+            return null;
+        }
+    }
+
+    private String getAirPollutionResponse(Response response) throws IOException {
+        // Check if the response body is not null before reading it
+        if (response.body() != null) {
+            return response.body().string();
+        } else {
+            System.out.println("Empty response body.");
+            return null;
+        }
+    }
+
 }

@@ -1,10 +1,18 @@
 package th.mfu.service;
 
-import th.mfu.DTO.UserDTO;
-import th.mfu.DTO.LoginDTO;
-import th.mfu.response.LoginResponse;
+import th.mfu.dto.UserDto;
+import th.mfu.model.User;
+
+import java.util.List;
 
 public interface UserService {
-    String addUser(UserDTO userDTO);
-    LoginResponse loginUser(LoginDTO loginDTO);
+
+    //Save method
+    void saveUser (UserDto userDto);
+
+    //Find email
+    User findUserByEmail(String email);
+
+    //List data structure as algorithms
+    List<UserDto> findAllUsers();
 }

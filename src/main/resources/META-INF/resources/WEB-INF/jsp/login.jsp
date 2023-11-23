@@ -1,52 +1,84 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
 <head>
-    <meta charset="ISO-8859-1">
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <title>Registration and Login System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/index}">Registration and Login System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/register}">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br /><br />
 <div class="container">
     <div class="row">
-        <h2>Login</h2>
-        <hr/>
-    </div>
+        <div class="col-md-6 offset-md-3">
 
-    <div class="row">
-        <div class="col-sm-6">
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">Invalid Email or Password</div>
+            </div>
+            <div th:if="${param.logout}">
+                <div class="alert alert-success"> You have been logged out.</div>
+            </div>
 
-            <form>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Enter Name"
-
-                           value="<%= request.getParameter("email") != null ? request.getParameter("email") : "" %>"
-                           onChange="window.location='/login?email='+encodeURIComponent(event.target.value);"
-
-                    />
-
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center">Login Form</h2>
                 </div>
+                <div class="card-body">
+                    <form
+                            method="post"
+                            role="form"
+                            th:action="@{/login}"
+                            class="form-horizontal"
+                    >
+                        <div class="form-group mb-3">
+                            <label class="control-label"> Email</label>
+                            <input
+                                    type="text"
+                                    id="username"
+                                    name="username"
+                                    class="form-control"
+                                    placeholder="Enter email address"
+                            />
+                        </div>
 
-                <div class="form-group">
-                    <label>password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Enter Fee"
-
-                           value="<%= request.getParameter("password") != null ? request.getParameter("password") : "" %>"
-                           onChange="window.location='/login?password='+encodeURIComponent(event.target.value);"
-
-                    />
+                        <div class="form-group mb-3">
+                            <label class="control-label"> Password</label>
+                            <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    class="form-control"
+                                    placeholder="Enter password"
+                            />
+                        </div>
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn btn-primary" >Submit</button>
+                            <span> Not registered ?
+                                <a th:href="@{/register}">Register/Signup here</a>
+                            </span>
+                        </div>
+                    </form>
                 </div>
-                <button type="submit" class="btn btn-primary" >Login</button>
-            </form>
-            <div className="container">
-                <table className="table table-striped">
-                    <tbody>
-                    <tr>
-                        <td><a href="http://localhost:8085/oauth2/authorization/google">Google</a></td>
-                    </tr>
-                    </tbody>
-                </table>
             </div>
         </div>
     </div>

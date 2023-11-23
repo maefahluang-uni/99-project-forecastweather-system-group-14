@@ -1,23 +1,23 @@
 package th.mfu.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import th.mfu.countryCodes.CountryCodes;
+import th.mfu.model.Airpollution;
 import th.mfu.model.Forecast;
 import th.mfu.model.Weather;
 import th.mfu.service.WeatherService;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.*;
+import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -26,29 +26,29 @@ public class WeatherController implements ErrorController {
 
     private static final String ERROR_PATH = "/error";
 
-    // TODO: add initBinder for date format
-    @InitBinder
-    public final void initBinderUsuariosFormValidator(final WebDataBinder binder, final Locale locate) {
-        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", locate);
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-    }
-
     @Autowired
     WeatherService wService;
 
     private List<String> days;
     private List<List<Forecast>> weatherData;
 
-    public String getErrorPath() {
-        return ERROR_PATH;
-    }
 
-    @RequestMapping(value = ERROR_PATH)
-    public String errorPage(Model model) {
-        CountryCodes codes = new CountryCodes();
-        model.addAttribute("codes", codes.getAllCountryCodes());
-        return "weather-view";
-    }
+//    @GetMapping("/resources/**")
+//    public String excludeStaticResources() {
+//        return "forward:/";
+//    }
+//
+//    // existing code
+
+//    @GetMapping("/**")
+//    public String errorHandle() {
+//        return "error404";
+//    }
+//
+//    @RequestMapping("/")
+//    public String ErrorHandle(){
+//        return "redirect:/homepage";
+//    }
 
     @RequestMapping("/")
     public String getWeatherView(Model model, CountryCodes codes) {
@@ -64,13 +64,19 @@ public class WeatherController implements ErrorController {
     public String getCurrentWeatherDataForCityAndCountry(
             @RequestParam("city") String city,
             @RequestParam("country") String country,
-            Model model) throws IOException {
+            Model model) throws IOException, ParseException {
 
+        //Current Weather
         Weather weather;
         weather = this.wService.getWeatherDataCity(city, country);
 
-        if(weather != null) {
+        //Air Pollution
+        Airpollution air = this.wService.getAirPollutionData(city, country);
+
+        if(weather != null && air != null) {
+            //Adding model through Weather, Airpollution
             model.addAttribute("weather", weather);
+            model.addAttribute("air", air);
             return "search-for-city";
         }else {
             CountryCodes codes = new CountryCodes();
