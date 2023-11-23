@@ -113,10 +113,10 @@
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+				<a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Sign Up</a>
+				<a class="nav-link" href="/register"><i class="fas fa-user-plus"></i> Sign Up</a>
 			</li>
 		</ul>
 	</div>

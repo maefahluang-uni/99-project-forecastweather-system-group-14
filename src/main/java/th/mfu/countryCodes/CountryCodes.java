@@ -1,9 +1,12 @@
 package th.mfu.countryCodes;
+
+import th.mfu.countryCodes.Interface.ISOInterface;
+
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 
-public class CountryCodes {
+public class CountryCodes implements ISOInterface {
 
     private Map<String, String> countries;
 
@@ -17,6 +20,7 @@ public class CountryCodes {
 
     }
 
+    @Override
     public String getCountryCode(String country) {
 
         return this.countries.get(country);

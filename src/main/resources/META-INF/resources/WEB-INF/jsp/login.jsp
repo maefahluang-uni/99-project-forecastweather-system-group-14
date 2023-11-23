@@ -10,21 +10,67 @@
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <!-- Your custom CSS -->
+
+    <style>
+        @media only screen and (max-width: 480px) {
+            body {
+                /* Adjust styles for screens up to 480px width */
+            }
+        }
+
+        @media only screen and (min-width: 481px) and (max-width: 767px) {
+            /* Styles for screens between 481px and 767px width */
+        }
+
+        @media only screen and (min-width: 768px) and (max-width: 991px) {
+            /* Styles for screens between 768px and 991px width */
+        }
+
+        @media only screen and (min-width: 992px) and (max-width: 1199px) {
+            /* Styles for screens between 992px and 1199px width */
+        }
+
+        @media only screen and (min-width: 1200px) and (max-width: 1399px) {
+            /* Styles for screens between 1200px and 1399px width */
+        }
+
+        @media only screen and (min-width: 1400px) and (max-width: 1799px) {
+            /* Styles for screens between 1400px and 1799px width */
+        }
+
+        @media only screen and (min-width: 1800px) {
+            /* Styles for screens larger than 1800px width */
+        }
+
+        @media only screen and (min-width: 2560px) {
+            /* Styles for 4K resolution screens */
+        }
+
+    </style>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/index}">Registration and Login System</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" th:href="@{/register}">Register</a>
-                </li>
-            </ul>
-        </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/">
+        <img src="/img/img.png" alt="Logo">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/register">Sign Up</a>
+            </li>
+        </ul>
     </div>
 </nav>
 <br /><br />
@@ -74,7 +120,7 @@
                         <div class="form-group mb-3">
                             <button type="submit" class="btn btn-primary" >Submit</button>
                             <span> Not registered ?
-                                <a th:href="@{/register}">Register/Signup here</a>
+                                <a class="nav-link" href="/register">Sign Up</a>
                             </span>
                         </div>
                     </form>
@@ -84,4 +130,8 @@
     </div>
 </div>
 </body>
+<!-- Include Bootstrap JS and dependencies (Popper.js and jQuery) -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </html>
