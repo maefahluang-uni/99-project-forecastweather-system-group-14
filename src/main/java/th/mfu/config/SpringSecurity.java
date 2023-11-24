@@ -30,7 +30,7 @@ public class SpringSecurity {
                 .authorizeRequests((authorize) ->
                         authorize
                                 .antMatchers("/register/**").permitAll()
-                                .antMatchers("/weather-view").permitAll()
+                                .antMatchers("/weather_view_with_user").permitAll()
                                 .antMatchers("/users").hasRole("ADMIN")
                 ).formLogin(
                         form -> form

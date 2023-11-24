@@ -10,49 +10,15 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 		  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 		  crossorigin="anonymous">
-	<style>
-		body {
-			background: url('/img/Background\ current.jpg') no-repeat center center fixed;
-			background-size: cover;
-			color: #000000; /* Set default text color to white */
-		}
-		.button {
-			background-color: rgb(151, 150, 149);
-			border: none;
-			border-radius: 34px;
-			color: rgb(0, 0, 0);
-			padding: 2px 20px;
-			text-align: center;
-			font-size: 22px;
-			margin: 4px 2px;
-			opacity: 0.6;
-			transition: 0.3s;
-			display: inline-block;
-			text-decoration: none;
-			cursor: pointer;
-		   }
-		   
-		   .button:hover {opacity: 1}
-		   
-	</style>	  
+
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/">
-			<!-- Your icon and description -->
-			<img src="/img/img.png" width= class="d-inline-block align-top" alt="">
-		</a>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav ml-auto">
-				<li class="nav-item">
-					<a class="nav-link" href="#">Login</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Sign Up</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
+
+<header style = "background-color: #15ffaa; text-align: center;">
+	<strong style = "font-size: 30px;">${city}'s five day weather forecast</strong><br/>
+	<a href = "/" class = "btn btn-link">Return to weather search</a>
+</header>
+
 <div class = "card-body">
 
 	<table class = "table table-hover table-sm" style = "table-layout: fixed; width: 100%;">
@@ -60,31 +26,31 @@
 		<tbody>
 		<tr>
 			<td>
-				<button class = "button" style = "width: 100%;" value = "${days[0]}" onclick = "showDay0(value)">
+				<button class = "btn btn-info btn-lg" style = "width: 100%;" value = "${days[0]}" onclick = "showDay0(value)">
 					${days[0]}
-					<p style = "text-align: center; font-size: 15px; padding-top: 5px; padding-bottom: 5px;"></p>
+					<p style = "text-align: center; font-size: 15px; padding-top: 5px; padding-bottom: 5px;">Today</p>
 				</button>
 			</td>
 			<td>
-				<button class = "button" style = "width: 100%;" value = "${days[1]}" onclick = "showDay1(value)">
+				<button class = "btn btn-info btn-lg" style = "width: 100%;" value = "${days[1]}" onclick = "showDay1(value)">
 					${days[1]}
-					<p style = "text-align: center; font-size: 15px; padding-top: 5px; padding-bottom: 5px;"></p>
+					<p style = "text-align: center; font-size: 15px; padding-top: 5px; padding-bottom: 5px;">Tomorrow</p>
 				</button>
 			</td>
 			<td>
-				<button class = "button" style = "width: 100%;" value = "${days[2]}" onclick = "showDay2(value)">
+				<button class = "btn btn-info btn-lg" style = "width: 100%;" value = "${days[2]}" onclick = "showDay2(value)">
 					${days[2]}
 						<p style = "text-align: center; font-size: 15px; padding-top: 5px; padding-bottom: 5px;"></p>
 				</button>
 			</td>
 			<td>
-				<button class = "button" style = "width: 100%;" value = "${days[3]}" onclick = "showDay3(value)">
+				<button class = "btn btn-info btn-lg" style = "width: 100%;" value = "${days[3]}" onclick = "showDay3(value)">
 					${days[3]}
 						<p style = "text-align: center; font-size: 15px; padding-top: 5px; padding-bottom: 5px;"></p>
 				</button>
 			</td>
 			<td>
-				<button class = "button" style = "width: 100%;" value = "${days[4]}" onclick = "showDay4(value)">
+				<button class = "btn btn-info btn-lg" style = "width: 100%;" value = "${days[4]}" onclick = "showDay4(value)">
 					${days[4]}
 						<p style = "text-align: center; font-size: 15px; padding-top: 5px; padding-bottom: 5px;"></p>
 				</button>
@@ -97,8 +63,8 @@
 	<table class = "table table-striped table-sm" style = "table-layout: fixed; width: 100%;">
 
 		<thead>
-		<tr style = "background-color: #262626; color: #ffffff;">
-			<td id = "current_day" style = "background-color: #5caeed; color: #150015">
+		<tr style = "background-color: #000000; color: #ffffff;">
+			<td id = "current_day" style = "background-color: #15ffaa; color: #150015">
 				${days[0]} (Today)
 			</td>
 			<td>Country</td>

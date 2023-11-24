@@ -5,6 +5,7 @@ import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import th.mfu.countryCodes.CountryCodes;
@@ -50,16 +51,25 @@ public class WeatherController implements ErrorController {
 //        return "redirect:/homepage";
 //    }
 
+    //Handler without user
     @RequestMapping("/")
     public String getWeatherView(Model model, CountryCodes codes) {
 
         model.addAttribute("codes", codes.getAllCountryCodes());
 
-        return "weather-view";
+        return "weather_view_without_user";
 
     }
 
+    //Handler with user account
+    @GetMapping("/with_user")
+    public String getWeatherViewWithUser(Model model, CountryCodes codes) {
+        model.addAttribute("codes", codes.getAllCountryCodes());
+        return "weather_view_with_user";
+    }
+
     //Allows you to search for weather in city + country (ISO) or just city alone.
+    //Also without User
     @GetMapping("/current/weather")
     public String getCurrentWeatherDataForCityAndCountry(
             @RequestParam("city") String city,
@@ -77,16 +87,39 @@ public class WeatherController implements ErrorController {
             //Adding model through Weather, Airpollution
             model.addAttribute("weather", weather);
             model.addAttribute("air", air);
-            return "search-for-city";
+            return "search_for_city_without_user";
         }else {
             CountryCodes codes = new CountryCodes();
             model.addAttribute("error", true);
             model.addAttribute("codes", codes.getAllCountryCodes());
-            return "weather-view";
+            return "weather_view_without_user";
         }
-
     }
 
+    @GetMapping("/with_user/current/weather")
+    public String getCurrentWeatherDataForCityAndCountryWithUser(
+            @ModelAttribute("city") String city,
+            @ModelAttribute("country") String country,
+            Model model) throws IOException, ParseException {
+
+        Weather weather;
+        weather = this.wService.getWeatherDataCity(city, country);
+
+        Airpollution air = this.wService.getAirPollutionData(city, country);
+
+        if(weather != null && air != null) {
+            model.addAttribute("weather", weather);
+            model.addAttribute("air", air);
+            return "search_for_city_with_user";
+        } else {
+            CountryCodes codes = new CountryCodes();
+            model.addAttribute("error", true);
+            model.addAttribute("codes", codes.getAllCountryCodes());
+            return "weather_view_with_user";
+        }
+    }
+
+    //Handler wihout user
     @GetMapping("/five_day/forecast")
     public String getFiveDayForecast(
             @RequestParam("city") String city,
@@ -110,9 +143,34 @@ public class WeatherController implements ErrorController {
             model.addAttribute("error", true);
             model.addAttribute("codes", codes.getAllCountryCodes());
             // Return the appropriate view
-            return "weather-view";
+            return "weather_view_without_user";
         }
+    }
 
+    //Handler with user logged account
+    @GetMapping("/with_user/five_day/forecast")
+    public String getFiveDayForecastWithUser(
+            @ModelAttribute("city") String city,
+            @ModelAttribute("country") String country,
+            Model model) throws IOException {
+
+        city = city.substring(0, 1).toUpperCase() + city.substring(1);
+
+        Map<String, List<Forecast>> fiveDay = this.wService.getHourlyWeather(city, country);
+
+        if(!fiveDay.isEmpty()) {
+            getDays(fiveDay);
+            getDataForEachDay(fiveDay);
+            model.addAttribute("city", city);
+            model.addAttribute("days", this.days);
+            model.addAttribute("weather_data", this.weatherData);
+            return "forecast-view_with_user";
+        } else {
+            CountryCodes codes = new CountryCodes();
+            model.addAttribute("error", true);
+            model.addAttribute("codes", codes.getAllCountryCodes());
+            return "weather_view_with_user";
+        }
     }
 
     public void getDays(Map<String, List<Forecast>> fiveDay) {

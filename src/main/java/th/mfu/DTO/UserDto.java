@@ -1,4 +1,4 @@
-package th.mfu.dto;
+package th.mfu.DTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

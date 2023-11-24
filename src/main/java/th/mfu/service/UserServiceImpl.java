@@ -1,12 +1,13 @@
 package th.mfu.service;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
-import th.mfu.dto.UserDto;
+import th.mfu.DTO.UserDto;
 import th.mfu.model.Role;
 import th.mfu.model.User;
 import th.mfu.repository.RoleRepository;
 import th.mfu.repository.UserRepository;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUser(UserDto userDto) {
+    public void saveUser(@Valid UserDto userDto) {
         User user = new User();
         user.setName(userDto.getFirstName() + " " + userDto.getLastName());
         user.setEmail(userDto.getEmail());
