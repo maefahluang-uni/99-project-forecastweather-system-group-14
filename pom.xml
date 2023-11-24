@@ -27,11 +27,12 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
+ <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.30</version>
+        <scope>provided</scope>
+    </dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -106,9 +107,9 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.mysql.cj</groupId>
+			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.32</version>
+			<version>8.0.12</version>
 		</dependency>
 
 		<dependency>
