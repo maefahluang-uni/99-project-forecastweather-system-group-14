@@ -51,8 +51,14 @@ public class WeatherController implements ErrorController {
 //        return "redirect:/homepage";
 //    }
 
-    //Handler without user
+    //Redirect when first come to /without_user
     @RequestMapping("/")
+    public String gethomePageView() {
+        return "redirect:/without_user";
+    }
+
+    //Handler without user
+    @RequestMapping("/without_user")
     public String getWeatherView(Model model, CountryCodes codes) {
 
         model.addAttribute("codes", codes.getAllCountryCodes());
@@ -70,7 +76,7 @@ public class WeatherController implements ErrorController {
 
     //Allows you to search for weather in city + country (ISO) or just city alone.
     //Also without User
-    @GetMapping("/current/weather")
+    @GetMapping("/without_user/current/weather")
     public String getCurrentWeatherDataForCityAndCountry(
             @RequestParam("city") String city,
             @RequestParam("country") String country,

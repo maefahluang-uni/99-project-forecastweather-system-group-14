@@ -1,8 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Registration and Login System</title>
@@ -16,44 +15,44 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <!-- Your custom CSS -->
 
     <style>
         @media only screen and (max-width: 480px) {
-            body {
-                /* Adjust styles for screens up to 480px width */
-            }
         }
 
-        @media only screen and (min-width: 481px) and (max-width: 767px) {
-            /* Styles for screens between 481px and 767px width */
+        body {
+            background-image: url('/img/mian login 2 3.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
 
-        @media only screen and (min-width: 768px) and (max-width: 991px) {
-            /* Styles for screens between 768px and 991px width */
+        /* Custom Tailwind CSS styles */
+        .card {
+            @apply bg-white p-6 rounded-lg shadow-md;
         }
 
-        @media only screen and (min-width: 992px) and (max-width: 1199px) {
-            /* Styles for screens between 992px and 1199px width */
+        .form-label {
+            @apply block text-gray-700 text-sm font-bold mb-2;
         }
 
-        @media only screen and (min-width: 1200px) and (max-width: 1399px) {
-            /* Styles for screens between 1200px and 1399px width */
+        .form-control {
+            @apply shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline;
         }
 
-        @media only screen and (min-width: 1400px) and (max-width: 1799px) {
-            /* Styles for screens between 1400px and 1799px width */
+        .btn-primary {
+            @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline;
         }
 
-        @media only screen and (min-width: 1800px) {
-            /* Styles for screens larger than 1800px width */
+        .nav-link {
+            @apply text-blue-500 hover:text-blue-700;
         }
 
-        @media only screen and (min-width: 2560px) {
-            /* Styles for 4K resolution screens */
-        }
+        /* Add other media queries as needed */
 
     </style>
 </head>
@@ -74,87 +73,58 @@
     </div>
 </nav>
 <br /><br /><br />
+<br /><br /><br />
 <div class="container">
-    <div class="row col-md-8 offset-md-2">
-        <div class="card">
-            <div class="card-header">
-                <h2 class="text-center">Registration</h2>
-            </div>
-            <div th:if="${param.success}">
-                <div class="alert alert-info">
-                    You have successfully registered our app!
+    <div class="flex justify-center">
+        <div class="w-full md:w-1/2">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="text-center text-2xl font-bold mb-4">Registration</h2>
                 </div>
-            </div>
-            <div class="card-body">
-                <form
-                        method="post"
-                        role="form"
-                        th:action="@{/register/save}"
-                        th:object="${user}"
-                >
-                    <div class="form-group mb-3">
-                        <label class="form-label">First Name</label>
-                        <input
-                                class="form-control"
-                                id="firstName"
-                                name="firstName"
-                                placeholder="Enter first name"
-                                th:field="*{firstName}"
-                                type="text"
-                        />
-                        <p th:errors = "*{firstName}" class="text-danger"
-                           th:if="${fields.hasErrors('firstName')}"></p>
-                    </div>
+                <div>
+                    <c:if test="${not empty param.success}">
+                        <div class="alert alert-info">
+                            You have successfully registered our app!
+                        </div>
+                    </c:if>
+                </div>
+                <div class="card-body">
+                    <form method="post" role="form" action="${pageContext.request.contextPath}/register/save">
+                        <!-- ... (your form fields remain the same) ... -->
+                        <div class="mb-4">
+                            <label class="form-label">First Name</label>
+                            <input class="form-control" id="firstName" name="firstName" placeholder="Enter first name" value="${user.firstName}" type="text" />
+                            <span><c:out value="${request.getAttribute('user.firstName')}"/></span>
+                        </div>
 
-                    <div class="form-group mb-3">
-                        <label class="form-label">Last Name</label>
-                        <input
-                                class="form-control"
-                                id="lastName"
-                                name="lastName"
-                                placeholder="Enter last name"
-                                th:field="*{lastName}"
-                                type="text"
-                        />
-                        <p th:errors = "*{lastName}" class="text-danger"
-                           th:if="${fields.hasErrors('lastName')}"></p>
-                    </div>
+                        <div class="mb-4">
+                            <label class="form-label">Last Name</label>
+                            <input class="form-control" id="lastName" name="lastName" placeholder="Enter last name" value="${user.lastName}" type="text" />
+                            <span><c:out value="${request.getAttribute('user.lastName')}"/></span>
+                        </div>
 
-                    <div class="form-group mb-3">
-                        <label class="form-label">Email</label>
-                        <input
-                                class="form-control"
-                                id="email"
-                                name="email"
-                                placeholder="Enter email address"
-                                th:field="*{email}"
-                                type="email"
-                        />
-                        <p th:errors = "*{email}" class="text-danger"
-                           th:if="${fields.hasErrors('email')}"></p>
-                    </div>
+                        <div class="mb-4">
+                            <label class="form-label">Email</label>
+                            <input class="form-control" id="email" name="email" placeholder="Enter email address" value="${user.email}" type="email" />
+                            <span><c:out value="${request.getAttribute('user.email')}"/></span>
+                        </div>
 
-                    <div class="form-group mb-3">
-                        <label class="form-label">Password</label>
-                        <input
-                                class="form-control"
-                                id="password"
-                                name="password"
-                                placeholder="Enter password"
-                                th:field="*{password}"
-                                type="password"
-                        />
-                        <p th:errors = "*{password}" class="text-danger"
-                           th:if="${fields.hasErrors('password')}"></p>
-                    </div>
-                    <form method="post" action="/your-registration-endpoint">
-                        <!-- your form fields go here -->
-                        <div class="form-group">
-                            <button class="btn btn-primary" type="submit">Register</button>
-                            <span>Already registered?   <a class="nav-link active" aria-current="page" href="/login">Login</a></span>
+                        <div class="mb-4">
+                            <label class="form-label">Password</label>
+                            <input class="form-control" id="password" name="password" placeholder="Enter password" value="${user.password}" type="password" />
+                            <span><c:out value="${request.getAttribute('user.password')}"/></span>
+                        </div>
+
+                        <div class="mb-4">
+                            <div class="text-center"><br>
+                            <button class="btn btn-primary mg-right" type="submit">Register</button><br>
+                            </div>
+                            <div class="text-center">
+                            <span>Already registered?   <a class="nav-link active mg-right" aria-current="page" href="/login">Login</a></span>
+                            </div>
                         </div>
                     </form>
-                </form>
+                </div>
             </div>
         </div>
     </div>

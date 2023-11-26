@@ -44,9 +44,10 @@
         </thead>
         <tbody>
         <tr th:each="user: ${users}">
-            <td th:text="${user.firstName}"></td>
-            <td th:text="${user.lastName}"></td>
-            <td th:text="${user.email}"></td>
+            <td value="${user.firstName}"></td>
+            <td value="${user.lastName}"></td>
+            <td value=${user.email}"></td>
+            <span><c:out value="${request.getAttribute('user.email')}"
         </tr>
         </tbody>
     </table>
