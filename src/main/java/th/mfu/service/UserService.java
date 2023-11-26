@@ -17,4 +17,12 @@ public interface UserService {
 
     //List data structure as algorithms
     List<UserDto> findAllUsers();
+
+    void updateEmail(String email, String newEmail);
+
+    void updatePassword(String name, String newPassword);
+
+    User findByEmail(String name);
+
+    void deleteAccount(String name);
 }

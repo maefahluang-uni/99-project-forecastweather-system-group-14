@@ -1,14 +1,15 @@
 package th.mfu.service;
 
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import th.mfu.DTO.UserDto;
+import th.mfu.exception.EmailAlreadyExistsException;
 import th.mfu.model.Role;
 import th.mfu.model.User;
 import th.mfu.repository.RoleRepository;
 import th.mfu.repository.UserRepository;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -59,6 +60,51 @@ public class UserServiceImpl implements UserService {
         return users.stream().map((user) -> convertEntityToDto(user))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void updateEmail(String email, String newEmail) {
+        User user = userRepository.findByEmail(email);
+        if (userRepository.existsByEmail(newEmail)) {
+            // Handle the case where the new email already exists
+            throw new EmailAlreadyExistsException("Email address already in use.");
+        }
+        // Proceed with the update
+        user.setEmail(newEmail);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void updatePassword(String email, String newPassword) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            // You should use a secure method to hash the new password before saving it
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userRepository.save(user);
+        }
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAccount(String email) {
+        User user = userRepository.findByEmail(email);
+
+//        // Delete roles associated with the user
+//        roleRepository.deleteUserRoles(user.getId());
+
+        if(user != null) {
+            // Remove user roles
+            user.getRoles().clear();
+
+            // Delete the user
+            userRepository.delete(user);
+        }
+    }
+
 
 
     private UserDto convertEntityToDto(User user) {

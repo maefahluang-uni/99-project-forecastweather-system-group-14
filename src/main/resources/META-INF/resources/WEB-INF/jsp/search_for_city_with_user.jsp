@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,15 +113,19 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <!-- Add the logout icon with a link to the logout page or action -->
-                <li class="nav-item">
-                    <a class="nav-link" href="/">
-                        <i class="bi bi-box-arrow-right"></i> Logout
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Account
                     </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="<c:url value="/logout" />">Logout</a>
+                        <a class="dropdown-item" href="<c:url value="/account" />">Account</a>
+                    </div>
                 </li>
             </ul>
         </div>
     </nav>
+
 </header>
 
 <!-- ... (your existing code) ... -->

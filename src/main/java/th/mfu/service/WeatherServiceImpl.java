@@ -107,6 +107,7 @@ public class WeatherServiceImpl implements WeatherService {
             this.weather.setTimeZone(timeZone);
             this.weather.setWeather(weather);
             this.weather.setWeatherDesc(weatherDesc);
+            this.weather.setWeatherIcon(weatherIcon);
 
             // Create a Date object and set it in the Weather class
 
