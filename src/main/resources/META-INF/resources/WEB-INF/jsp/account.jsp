@@ -1,117 +1,113 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Include Tailwind CSS -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-
-    <!-- Include your other CSS and head elements -->
     <style>
         body {
-            background-image: url('/img/mian_login_2_3.png'); /* Adjust the path accordingly */
-            background-size: cover;
-            background-repeat: no-repeat;
-            width: 100%;
-            height: 100%;
-            margin: 0;
-            padding: 0;
+            margin-top: 20px;
+            color: #bcd0f7;
+            background: #1A233A;
         }
 
-        header {
-            background-color: #ffffff; /* Set background color for the header */
+        .account-settings .user-profile {
+            text-align: center;
         }
 
-        nav {
-            padding: 1rem;
+        .account-settings .user-profile .user-avatar img {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
         }
 
-        .navbar-brand img {
-            max-width: 100px; /* Adjust the maximum width of the logo */
+        .account-settings .about {
+            margin: 1rem 0 0 0;
+            font-size: 0.8rem;
+            text-align: center;
         }
 
-        .navbar-toggler-icon {
-            background-color: #000000; /* Set the color of the toggler icon */
+        .card {
+            background: #272E48;
+            border-radius: 5px;
+            border: 0;
+            margin-bottom: 1rem;
         }
 
-        .navbar-nav {
-            margin-left: auto;
+        .form-control {
+            border: 1px solid #596280;
+            border-radius: 2px;
+            font-size: .825rem;
+            background: #1A233A;
+            color: #bcd0f7;
         }
 
-        .container {
-            background-color: rgba(255, 255, 255, 0.8); /* Set a semi-transparent white background for the content */
-            border-radius: 8px;
-            padding: 20px;
+        /* Adjustments for responsiveness */
+        @media (max-width: 768px) {
+            .gutters {
+                margin-right: 0;
+                margin-left: 0;
+            }
         }
     </style>
 </head>
+
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">
-            <img src="/img/img.png" alt="Logo">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<!-- Bootstrap Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">Account Setting</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="<c:url value="/logout" />">Logout</a>
+                    <a class="nav-link" href="#">Logout</a>
                 </li>
             </ul>
         </div>
-    </nav>
-</header>
+    </div>
+</nav>
 
-<div class="container mx-auto mt-8 p-8">
-    <h2 class="text-2xl font-bold mb-4">Account Settings</h2>
+<!-- Tailwind Container -->
+<div class="container mx-auto p-4">
+    <!-- Bootstrap Card -->
+    <div class="row gutters">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <!-- Tailwind Forms -->
+                    <form action="${pageContext.request.contextPath}/updateUsernameWithEmailCheck" method="post" class="mb-8">
+                        <label for="newEmail" class="block text-sm font-medium text-gray-600">Current Email: ${currentUser.email}</label>
+                        <input type="text" id="newEmail" name="newEmail" required class="mt-1 p-2 border rounded-md w-full">
+                        <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">Update Email</button>
+                    </form>
 
-    <c:if test="${not empty emailError}">
-        <div class="alert alert-danger" role="alert">
-                ${emailError}
+                    <form action="${pageContext.request.contextPath}/updatePassword" method="post" class="mb-8">
+                        <label for="newPassword" class="block text-sm font-medium text-gray-600">New Password:</label>
+                        <input type="password" id="newPassword" name="newPassword" required class="mt-1 p-2 border rounded-md w-full">
+                        <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">Update Password</button>
+                    </form>
+
+                    <form action="${pageContext.request.contextPath}/deleteAccount" method="post" class="mb-8">
+                        <button type="submit" class="mt-2 px-4 py-2 bg-red-500 text-white rounded-md">Delete Account</button>
+                    </form>
+                </div>
+            </div>
         </div>
-    </c:if>
-
-    <!-- ... (previous code) ... -->
-
-    <table class="table table-striped table-bordered table-hover">
-        <thead class="table-dark">
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Email</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user: ${users}">
-            <td th:text="${user.firstName}"></td>
-            <td th:text="${user.lastName}"></td>
-            <td th:text="${user.email}"></td>
-        </tr>
-        </tbody>
-    </table>
-
-    <!-- ... (remaining code) ... -->
-
-
-    <form action="${pageContext.request.contextPath}/updateUsername" method="post" class="mb-8">
-        <label for="newUsername" class="block text-sm font-medium text-gray-600">Current Email: ${currentUser.email}</label>
-        <input type="text" id="newUsername" name="newEmail" required class="mt-1 p-2 border rounded-md w-full">
-        <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">Update Username[email]</button>
-    </form>
-
-    <form action="${pageContext.request.contextPath}/updatePassword" method="post" class="mb-8">
-        <label for="newPassword" class="block text-sm font-medium text-gray-600">New Password:</label>
-        <input type="password" id="newPassword" name="newPassword" required class="mt-1 p-2 border rounded-md w-full">
-        <button type="submit" class="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">Update Password</button>
-    </form>
-
-    <form action="${pageContext.request.contextPath}/deleteAccount" method="post" class="mb-8">
-        <button type="submit" class="mt-2 px-4 py-2 bg-red-500 text-white rounded-md">Delete Account</button>
-    </form>
+    </div>
 </div>
 
-<!-- Include your footer, scripts, etc. -->
+<!-- Include Bootstrap JS and Popper.js -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
