@@ -1,27 +1,28 @@
 steps:
-  # Build the container image
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/forecastweather14/forecastweather14:$COMMIT_SHA', '.']
-
-  # Push the container image to Artifact Registry
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/forecastweather14/forecastweather14:$COMMIT_SHA']
-
-  # Deploy container image to Cloud Run
-  - name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: 'bash'
-    args:
-      - '-c'
-      - |
-        gcloud run deploy forecastweathe14 \
-          --image=us-central1-docker.pkg.dev/${_PROJECT_ID}/forecastweather14/forecastweather14:$COMMIT_SHA \
-          --region=us-central1 \
-          --allow-unauthenticated \
-          --platform=managed \
-          --port=8100
-
+ # Build the container image
+ - name: 'gcr.io/cloud-builders/docker'
+   args: [ 'build', '-t', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/webdev-dockers/forecastweather14:$COMMIT_SHA', '.' ]
+ # Push the container image to Artifact Registry
+ - name: 'gcr.io/cloud-builders/docker'
+   args: ['push', 'us-central1-docker.pkg.dev/${_PROJECT_ID}/webdev-dockers/forecastweather14:$COMMIT_SHA']
+ # Deploy container image to Cloud Run
+ - name: 'gcr.io/cloud-builders/gcloud'
+   entrypoint: gcloud
+   args:
+   - 'run'
+   - 'deploy'
+   - 'forecastweather14'
+   - '--image'
+   - 'us-central1-docker.pkg.dev/${_PROJECT_ID}/webdev-dockers/forecastweather14:$COMMIT_SHA'
+   - '--region'
+   - 'us-central1'
+   - '--allow-unauthenticated'
+   - '--platform'
+   - 'managed'
+   - '--port'
+   - '8100'
 images:
-  - 'us-central1-docker.pkg.dev/${_PROJECT_ID}/forecastweather14/forecastweather14'
+ - 'us-central1-docker.pkg.dev/${_PROJECT_ID}/webdev-dockers/forecastweather14'
 
 substitutions:
   _PROJECT_ID: 'forecastweather14'
