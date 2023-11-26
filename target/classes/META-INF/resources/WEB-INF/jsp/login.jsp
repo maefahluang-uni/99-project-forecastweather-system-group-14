@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en"
@@ -55,6 +56,16 @@
             /* Styles for 4K resolution screens */
         }
 
+        body {
+            background-image: url('/img/mian login 2 3.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -77,14 +88,20 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-
-            <div th:if="${param.error}">
-                <div class="alert alert-danger">Invalid Email or Password</div>
+            <div>
+                <c:if test="${not empty parem.error}">
+                    <div class="alert alert-danger">
+                        Invalid Email or Password
+                    </div>
+                </c:if>
             </div>
-            <div th:if="${param.logout}">
-                <div class="alert alert-success"> You have been logged out.</div>
+            <div>
+                <c:if test="${not empty param.logout}">
+                    <div class="alert alert-success">
+                        You have been logged out.
+                    </div>
+                </c:if>
             </div>
-
             <div class="card">
                 <div class="card-header">
                     <h2 class="text-center">Login Form</h2>
@@ -93,36 +110,39 @@
                     <form
                             method="post"
                             role="form"
+                            action="${pageContext.request.contextPath}/login"
                             th:action="@{/login}"
                             class="form-horizontal"
                     >
                         <div class="form-group mb-3">
                             <label class="control-label"> Email</label>
-                            <input
-                                    type="text"
-                                    id="username"
-                                    name="username"
-                                    class="form-control"
-                                    placeholder="Enter email address"
-                            />
+                            <input class="form-control"
+                                   id="username"
+                                   type="username"
+                                   name="username"
+                                   placeholder="Enter email address"
+                                   value="${user.email}"/>
+                            <c:out value="${request.getAttribute('user.email')}"/>
                         </div>
-
                         <div class="form-group mb-3">
                             <label class="control-label"> Password</label>
-                            <input
-                                    type="password"
-                                    id="password"
-                                    name="password"
-                                    class="form-control"
-                                    placeholder="Enter password"
-                            />
+                            <input class="form-control"
+                                   id="password"
+                                   name="password"
+                                   type="password"
+                                   placeholder="Enter password"
+                                   value="${user.password}"/>
+                            <c:out value="${request.getAttribute('user.password')}"/>
                         </div>
                         <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-primary" >Submit</button>
-                            <span> Not registered ?
-                                <a class="nav-link" href="/register">Sign Up</a>
-                            </span>
+                            <div class="text-center"><br>
+                            <button type="submit" class="btn btn-primary mg-right">Submit</button><br>
+                                </div>
+                            <div class="text-center"> <!-- Center the content -->
+                                <span>Not registered? <a class="nav-link active mg-right" aria-current="page" href="/register">Sign Up</a></span>
+                            </div>
                         </div>
+
                     </form>
                 </div>
             </div>

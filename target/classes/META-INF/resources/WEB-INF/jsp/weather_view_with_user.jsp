@@ -399,7 +399,7 @@
         </div>
         <div class="main-btn-box">
             <div class="sub-btn-box">
-                <button type="submit" formaction="/current/weather" name="current" class="btn-current">Current Weather</button>
+                <button type="submit" formaction="/with_user/current/weather" name="current" class="btn-current">Current Weather</button>
                 <button type="submit" formaction="/five_day/forecast" name="five_day" class="btn-5dfc">5 Day Forecast</button>
             </div>
         </div>
