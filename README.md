@@ -1,34 +1,22 @@
 # Forecast-Weather-System Group <14>
+## Project Description
+
+Forecasting weather is like tutoring a vast audience, often requiring repetitive efforts that consume valuable time. Our Weather Forecast website is the solution to this challenge. Imagine recording a forecast once and effortlessly uploading it to our dedicated platform. Meteorologists can break free from repetition, saving time and refining predictions. This digital hub empowers forecasters to manage and update forecasts seamlessly. Welcome to a future where forecasting is efficient, accurate, and liberating. Embrace the Weather Forecast website – where predicting the elements becomes a seamless and empowering experience.
 
 ## Team Members
 
-- **Mr. Nimit Tanboontor**
-  - *Role:* Fullstack
-  - *ID:* [6531503042]
-  
-- **Mr. Kritsakorn Sukkasem**
-  - *Role:* Backend
-  - *ID:* [6531503005]
-  
-- **Mr. Klavivach Prajong**
-  - *Role:* Fullstack
-  - *ID:* [6531503006]
-  
-- **Mr. Kongphop Saenphai**
-  - *Role:* Frontend
-  - *ID:* [6531503008]
-  
-- **Mr. Phumiphat Wongsathit**
-  - *Role:* Backend
-  - *ID:* [6531503117]
- 
-- **Mr. Ramet Naochompoo**
-  - *Role:* Frontend
-  - *ID:* [6531503120]
+| Student ID   | First Name | Last Name     | Github account           | 
+|--------------|------------|---------------|--------------------------|
+| 6531503005   | Kritsakorn | Sukkasem      | Kritsasoft               |
+| 6531503006   | Klavivach  | Prajong       | MABiuS1                  |
+| 6531503008   | Kongphop   | Saenphai      | kongphop1209             |
+| 6531503042   | Nimit      | Tanboontor    | 6531503042               |
+| 6531503117   | Phumiphat  | Wongsathit    | 2547phumiphat            |
+| 6531503120   | Ramet      | Naochomphoo   | 6531503120               |
 
-## Project Description
 
-[Add a brief description of your project here.]
+## Deployed on Google Cloud
+"none"
 
 ## Installation
 
@@ -114,29 +102,5 @@ To run the frontend, follow these steps:
 
 Now you should have both the backend and frontend running simultaneously. Open your browser and navigate to the specified URLs for the backend and frontend components.
 
-## Usage
-
-[Explain how to use your project.]
-
-## Contribution Guidelines
-
-[If others want to contribute to your project, provide guidelines here.]
-
-## License
-
-[Specify the license for your project.]
-
-
-## Usage
-
-[Explain how to use your project.]
-
-## Contribution Guidelines
-
-[If others want to contribute to your project, provide guidelines here.]
-
-## License
-
-[Specify the license for your project.]
 
 
