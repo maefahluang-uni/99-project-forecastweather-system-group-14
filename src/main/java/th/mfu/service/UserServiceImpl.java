@@ -1,5 +1,6 @@
 package th.mfu.service;
 
+import th.mfu.exception.EmailAlreadyExistsException;
 import th.mfu.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -93,6 +94,51 @@ public class UserServiceImpl implements UserService {
         return users.stream().map((user) -> convertEntityToDto(user))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void updateEmail(String email, String newEmail) {
+        User user = userRepository.findByEmail(email);
+        if (userRepository.existsByEmail(newEmail)) {
+            // Handle the case where the new email already exists
+            throw new EmailAlreadyExistsException("Email address already in use.");
+        }
+        // Proceed with the update
+        user.setEmail(newEmail);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void updatePassword(String email, String newPassword) {
+        User user = userRepository.findByEmail(email);
+        if (user != null) {
+            // You should use a secure method to hash the new password before saving it
+            user.setPassword(passwordEncoder.encode(newPassword));
+            userRepository.save(user);
+        }
+    }
+
+    @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    @Transactional
+    public void deleteAccount(String email) {
+        User user = userRepository.findByEmail(email);
+
+//        // Delete roles associated with the user
+//        roleRepository.deleteUserRoles(user.getId());
+
+        if(user != null) {
+            // Remove user roles
+            user.getRoles().clear();
+
+            // Delete the user
+            userRepository.delete(user);
+        }
+    }
+
 
 
     private UserDto convertEntityToDto(User user) {

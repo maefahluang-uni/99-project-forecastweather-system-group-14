@@ -47,7 +47,7 @@
             <td value="${user.firstName}"></td>
             <td value="${user.lastName}"></td>
             <td value=${user.email}"></td>
-            <span><c:out value="${request.getAttribute('user.email')}"
+            <span><c:out value="${request.getAttribute('user.email')}"></c:out>
         </tr>
         </tbody>
     </table>

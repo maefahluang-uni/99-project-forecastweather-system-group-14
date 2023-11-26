@@ -1,9 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Registration and Login System</title>
@@ -17,8 +15,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <!-- Your custom CSS -->
 
     <style>
@@ -65,7 +61,6 @@
             margin: 0;
             padding: 0;
         }
-
     </style>
 </head>
 <body>
@@ -73,7 +68,8 @@
     <a class="navbar-brand" href="/">
         <img src="/img/img.png" alt="Logo">
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -84,68 +80,78 @@
         </ul>
     </div>
 </nav>
-<br /><br />
+<br/><br/>
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
-            <div>
-                <c:if test="${not empty parem.error}">
+            <!-- Display error message if present -->
+            <div class="text-center">
+                <c:if test="${param.error}">
                     <div class="alert alert-danger">
                         Invalid Email or Password
                     </div>
                 </c:if>
             </div>
-            <div>
-                <c:if test="${not empty param.logout}">
+
+            <!-- Display logout message if present -->
+            <div class="text-center">
+                <c:if test="${param.logout}">
                     <div class="alert alert-success">
                         You have been logged out.
                     </div>
                 </c:if>
             </div>
+
             <div class="card">
                 <div class="card-header">
                     <h2 class="text-center">Login Form</h2>
                 </div>
                 <div class="card-body">
-                    <form
-                            method="post"
-                            role="form"
-                            action="${pageContext.request.contextPath}/login"
-                            th:action="@{/login}"
-                            class="form-horizontal"
-                    >
+                    <form method="post" role="form" action="${pageContext.request.contextPath}/login" th:action="@{/login}"
+                          class="form-horizontal">
+
+                        <!--User input box-->
                         <div class="form-group mb-3">
                             <label class="control-label"> Email</label>
-                            <input class="form-control"
-                                   id="username"
-                                   type="username"
-                                   name="username"
-                                   placeholder="Enter email address"
-                                   value="${user.email}"/>
-                            <c:out value="${request.getAttribute('user.email')}"/>
-                        </div>
-                        <div class="form-group mb-3">
-                            <label class="control-label"> Password</label>
-                            <input class="form-control"
-                                   id="password"
-                                   name="password"
-                                   type="password"
-                                   placeholder="Enter password"
-                                   value="${user.password}"/>
-                            <c:out value="${request.getAttribute('user.password')}"/>
-                        </div>
-                        <div class="form-group mb-3">
-                            <div class="text-center"><br>
-                            <button type="submit" class="btn btn-primary mg-right">Submit</button><br>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                                 </div>
-                            <div class="text-center"> <!-- Center the content -->
-                                <span>Not registered? <a class="nav-link active mg-right" aria-current="page" href="/register">Sign Up</a></span>
+                                <input class="form-control" id="username" type="username" name="username"
+                                       placeholder="Enter email address" value="${user.email}"/>
                             </div>
                             <div class="text-center"> <!-- Center the content -->
                                 <span> <a href="/forgot_password">Forgot your password?</a></span>
                             </div>
                         </div>
 
+                        <div class="form-group mb-3">
+                            <label class="control-label"> Password</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                </div>
+                                <input class="form-control" id="password" name="password" type="password"
+                                       placeholder="Enter password" value="${user.password}"/>
+                                <div class="input-group-append">
+            <span class="input-group-text">
+                <i class="fas fa-eye" onclick="togglePassword()"></i>
+            </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <div class="text-center">
+                                <br>
+                                <button type="submit" class="btn btn-primary mg-right">Submit</button>
+                                <br>
+                            </div>
+                            <div class="text-center">
+                                <!-- Center the content -->
+                                <span>Not registered? <a class="nav-link active mg-right" aria-current="page"
+                                                         href="/register">Sign Up</a></span>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -157,4 +163,11 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+        passwordInput.setAttribute('type', type);
+    }
+</script>
 </html>
