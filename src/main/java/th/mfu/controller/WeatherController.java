@@ -54,6 +54,7 @@ public class WeatherController implements ErrorController {
     //Redirect when first come to /without_user
     @RequestMapping("/")
     public String gethomePageView() {
+
         return "redirect:/without_user";
     }
 
