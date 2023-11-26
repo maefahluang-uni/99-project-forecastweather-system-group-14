@@ -1,6 +1,8 @@
 package th.mfu.service;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 import th.mfu.DTO.UserDto;
 import th.mfu.model.Role;
 import th.mfu.model.User;
@@ -11,6 +13,8 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+@Service // Add the Service annotation
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
@@ -55,6 +59,7 @@ public class UserServiceImpl implements UserService {
         return users.stream().map((user) -> convertEntityToDto(user))
                 .collect(Collectors.toList());
     }
+
 
     private UserDto convertEntityToDto(User user) {
         UserDto userDto = new UserDto();

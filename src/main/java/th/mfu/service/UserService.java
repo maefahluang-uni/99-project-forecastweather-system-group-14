@@ -1,5 +1,6 @@
 package th.mfu.service;
 
+import org.springframework.security.core.userdetails.UserDetails;
 import th.mfu.DTO.UserDto;
 import th.mfu.model.User;
 
