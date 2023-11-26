@@ -141,6 +141,9 @@
                             <div class="text-center"> <!-- Center the content -->
                                 <span>Not registered? <a class="nav-link active mg-right" aria-current="page" href="/register">Sign Up</a></span>
                             </div>
+                            <div class="text-center"> <!-- Center the content -->
+                                <span> <a href="/forgot_password">Forgot your password?</a></span>
+                            </div>
                         </div>
 
                     </form>

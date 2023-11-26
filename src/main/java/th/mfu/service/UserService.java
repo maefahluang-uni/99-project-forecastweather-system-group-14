@@ -6,6 +6,7 @@ import th.mfu.model.User;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -17,4 +18,5 @@ public interface UserService {
 
     //List data structure as algorithms
     List<UserDto> findAllUsers();
+
 }
