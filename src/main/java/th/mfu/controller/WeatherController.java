@@ -127,7 +127,7 @@ public class WeatherController implements ErrorController {
     }
 
     //Handler wihout user
-    @GetMapping("/five_day/forecast")
+    @GetMapping("/without_user/five_day/forecast")
     public String getFiveDayForecast(
             @RequestParam("city") String city,
             @RequestParam("country") String country,
@@ -144,7 +144,7 @@ public class WeatherController implements ErrorController {
             model.addAttribute("city", city);
             model.addAttribute("days", this.days);
             model.addAttribute("weather_data", this.weatherData);
-            return "forecast-view";
+            return "forecast_view_without_user";
         }else {
             CountryCodes codes = new CountryCodes();
             model.addAttribute("error", true);
@@ -171,7 +171,7 @@ public class WeatherController implements ErrorController {
             model.addAttribute("city", city);
             model.addAttribute("days", this.days);
             model.addAttribute("weather_data", this.weatherData);
-            return "forecast-view_with_user";
+            return "forecast_view_with_user";
         } else {
             CountryCodes codes = new CountryCodes();
             model.addAttribute("error", true);

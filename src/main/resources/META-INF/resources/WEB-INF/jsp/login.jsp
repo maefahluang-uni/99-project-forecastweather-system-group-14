@@ -120,9 +120,6 @@
                                 <input class="form-control" id="username" type="username" name="username"
                                        placeholder="Enter email address" value="${user.email}"/>
                             </div>
-                            <div class="text-center"> <!-- Center the content -->
-                                <span> <a href="/forgot_password">Forgot your password?</a></span>
-                            </div>
                         </div>
 
                         <div class="form-group mb-3">
@@ -145,7 +142,11 @@
                                 <br>
                                 <button type="submit" class="btn btn-primary mg-right">Submit</button>
                                 <br>
-                            </div>
+                            </div> <br>
+
+                            <div class="text-center"> <!-- Center the content -->
+                                <span> <a href="/forgot_password">Forgot your password?</a></span>
+                            </div> <br>
                             <div class="text-center">
                                 <!-- Center the content -->
                                 <span>Not registered? <a class="nav-link active mg-right" aria-current="page"

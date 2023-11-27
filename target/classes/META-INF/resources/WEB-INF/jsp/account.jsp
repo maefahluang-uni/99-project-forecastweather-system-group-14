@@ -11,9 +11,13 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         body {
-            margin-top: 20px;
-            color: #bcd0f7;
-            background: #1A233A;
+            background-image: url('/img/mian login 2 3.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
         }
 
         .account-settings .user-profile {
@@ -33,18 +37,9 @@
         }
 
         .card {
-            background: #272E48;
             border-radius: 5px;
             border: 0;
             margin-bottom: 1rem;
-        }
-
-        .form-control {
-            border: 1px solid #596280;
-            border-radius: 2px;
-            font-size: .825rem;
-            background: #1A233A;
-            color: #bcd0f7;
         }
 
         /* Adjustments for responsiveness */
@@ -59,9 +54,9 @@
 
 <body>
 <!-- Bootstrap Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-white">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/">Account Setting</a>
+        <a class="navbar-brand" href="/with_user"><img src="/img/img.png" alt="Logo"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -74,7 +69,6 @@
         </div>
     </div>
 </nav>
-
 <!-- Tailwind Container -->
 <div class="container mx-auto p-4">
     <!-- Bootstrap Card -->
@@ -103,6 +97,7 @@
         </div>
     </div>
 </div>
+
 
 <!-- Include Bootstrap JS and Popper.js -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

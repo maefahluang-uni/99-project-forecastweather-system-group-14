@@ -18,11 +18,11 @@
                 <div class="card-body">
                     <h2 class="text-center">Forgot Password</h2>
 
-                    <div th:if="${error != null}" class="alert alert-danger">
-                        [[${error}]]
+                    <div c:if="${error != null}" class="alert alert-danger">
+                        ${error}
                     </div>
-                    <div th:if="${message != null}" class="alert alert-warning">
-                        [[${message}]]
+                    <div c:if="${message != null}" class="alert alert-warning">
+                        ${message}
                     </div>
 
                     <form th:action="@{/forgot_password}" method="post" style="max-width: 420px; margin: 0 auto;">
