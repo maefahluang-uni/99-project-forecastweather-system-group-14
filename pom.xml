@@ -18,7 +18,21 @@
 		<jetcache.version>2.5.9</jetcache.version>
 	</properties>
 
+	
 	<dependencies>
+    <!-- Spring Framework Mail Dependency -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-mail</artifactId>
+    </dependency>
+
+    <!-- JavaMail API Dependency -->
+    <dependency>
+        <groupId>javax.mail</groupId>
+        <artifactId>javax.mail-api</artifactId>
+        <version>1.6.2</version> <!-- Use the latest version available -->
+    </dependency>
+
 
 		<dependency>
 			<groupId>junit</groupId>
@@ -116,13 +130,13 @@
 			<scope>runtime</scope>
 		</dependency>
 
-
-		<!--		&lt;!&ndash; https://mvnrepository.com/artifact/mysql/mysql-connector-java &ndash;&gt;-->
+<!-- 
+				&lt;!&ndash; https://mvnrepository.com/artifact/mysql/mysql-connector-java &ndash;&gt;-->
 <!--		<dependency>-->
 <!--			<groupId>mysql</groupId>-->
 <!--			<artifactId>mysql-connector-java</artifactId>-->
 <!--			<version>8.0.33</version>-->
-<!--		</dependency>-->
+<!--		</dependency> -->
 
 
 		<dependency>
@@ -147,6 +161,12 @@
 <!--			<artifactId>spring-cloud-gcp-starter-sql-mysql</artifactId>-->
 <!--			<version>4.8.4</version>-->
 <!--		</dependency>-->
+<dependency>
+    <groupId>mysql</groupId>
+    <artifactId>mysql-connector-java</artifactId>
+    <version>8.0.33</version> <!-- Use the version that matches your MySQL server version -->
+</dependency>
+
 
 
 	</dependencies>
