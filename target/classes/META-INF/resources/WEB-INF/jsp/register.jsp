@@ -117,10 +117,10 @@
 
                         <div class="mb-4">
                             <div class="text-center"><br>
-                            <button class="btn btn-primary mg-right" type="submit">Register</button><br>
+                                <button class="btn btn-primary mg-right" type="submit">Register</button><br>
                             </div>
                             <div class="text-center">
-                            <span>Already registered?   <a class="nav-link active mg-right" aria-current="page" href="/login">Login</a></span>
+                                <span>Already registered?   <a class="nav-link active mg-right" aria-current="page" href="/login">Login</a></span>
                             </div>
                         </div>
                     </form>

@@ -362,7 +362,7 @@
 </head>
 <header>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
-		<a class="navbar-brand" href="/">
+		<a class="navbar-brand" href="/without_user">
 			<img src="/img/img.png" alt="Logo">
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -394,7 +394,7 @@
 		<div class="main-btn-box">
 			<div class="sub-btn-box">
 				<button type="submit" formaction="/without_user/current/weather" name="current" class="btn-current">Current Weather</button>
-				<button type="submit" formaction="/five_day/forecast" name="five_day" class="btn-5dfc">5 Day Forecast</button>
+				<button type="submit" formaction="/without_user/five_day/forecast" name="five_day" class="btn-5dfc">5 Day Forecast</button>
 			</div>
 		</div>
 		<div class="logolayer">

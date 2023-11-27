@@ -1,213 +1,720 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Weather Forecast Dashboard</title>
-	<!-- Include Tailwind CSS and Material UI styles -->
-	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
-	<!-- Font Awesome Icons -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-	<!-- Font Awesome Icons -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-	<!-- Your custom CSS -->
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+	<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+	<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+	<title>SEEZ Current Weather</title>
 	<style>
+		* {
+			padding: 0;
+			margin: 0;
+			font-family: 'Sarabun', sans-serif;
+		}
+
 		body {
-			font-family: 'Inter', sans-serif;
+			background-image: url('https://raw.githubusercontent.com/maefahluang-uni/99-project-forecastweather-system-group-14/main/src/main/resources/META-INF/resources/WEB-INF/jsp/img/mian%20login%202%203.png');
+			background-repeat: no-repeat;
+			background-size: cover;
+			width: 100%;
+			height: 100%;
 		}
 
-		@media only screen and (max-width: 480px) {
-			body {
-				/* Adjust styles for screens up to 480px width */
-			}
+		.nav-bar-top{
+			background-color: rgb(236, 236, 236, 0.8);
+			width: 100%;
+			height: 100px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
 		}
 
-		@media only screen and (min-width: 481px) and (max-width: 767px) {
-			/* Styles for screens between 481px and 767px width */
+		.nav-bar-logo{
+			width: 28%;
+			height: 85%;
+			margin-left: 10px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
 		}
 
-		@media only screen and (min-width: 768px) and (max-width: 991px) {
-			/* Styles for screens between 768px and 991px width */
+		.nav-bar-profile{
+			width: 15%;
+			height: 85%;
+			margin-right: 10px;
+			justify-content: space-around;
+			display: flex;
+			align-items: center;
 		}
 
-		@media only screen and (min-width: 992px) and (max-width: 1199px) {
-			/* Styles for screens between 992px and 1199px width */
+		.profile-box{
+			height: 55px;
+			width: 55px;
+			border-radius: 50%;
+			overflow: hidden;
 		}
 
-		@media only screen and (min-width: 1200px) and (max-width: 1399px) {
-			/* Styles for screens between 1200px and 1399px width */
+		.profile-box-pop-up{
+			width: 175px;
+			height: 125px;
+			position: absolute;
+			right: 3.3%;
+			top: 1%;
+			visibility: hidden;
 		}
 
-		@media only screen and (min-width: 1400px) and (max-width: 1799px) {
-			/* Styles for screens between 1400px and 1799px width */
+		.profile-box-pop-up:hover p{
+			visibility: visible;
 		}
 
-		@media only screen and (min-width: 1800px) {
-			/* Styles for screens larger than 1800px width */
+		.profile-box-pop-up p{
+			visibility: hidden;
 		}
 
-		@media only screen and (min-width: 2560px) {
-			/* Styles for 4K resolution screens */
+		.profile-box-pop-up:hover{
+			background-color: rgb(255, 255, 255, 0.95);
+			width: 175px;
+			height: 125px;
+			position: absolute;
+			border-radius: 16px;
+			right: 3.3%;
+			top: 10%;
+			transition: 0.48s;
+			visibility: visible;
 		}
 
-
-		.text-black {
-			color: #000 !important;
+		.profile-box-pop-up-box-wrapper {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-around;
+			visibility: visible;
+			transition: 0.48s;
 		}
 
-		.navbar {
-			background-color: rgba(236, 236, 236, 1); /* Full opacity */
-			border-bottom: 1px solid #dee2e6;
+		.profile-box-pop-up-box-wrapper::after{
+			visibility: hidden;
 		}
 
-		.card {
-			border-radius: 15px;
-			background-color: rgba(217, 217, 217, 0.75); /* 75% opacity */
-			color: #000000; /* Set card text color to black */
+		.profile-box-pop-up-box-wrapper a{
+			text-decoration: none;
 		}
 
-		.card-title {
-			font-size: 20px;
-			margin-bottom: 10px;
-			color: #000000; /* Set card title color to black */
-		}
-
-		.card-text {
+		.popup-customizeacc p {
 			font-size: 16px;
-			color: #000000; /* Set card text color to black */
+			color: black;
+
 		}
 
-		.btn {
-			background-color: rgba(217, 217, 217, 1); /* Full opacity */
-			color: #ffffff; /* Set button text color to white */
+		.popup-logout p {
+			font-size: 16px;
+			color: #0066FF;
 		}
 
-		.card-body {
-			padding: 20px; /* Adjust as needed for spacing between sections */
+		.profile-box img {
+			width: 100%;
+			height: 100%;
+			position: relative;
 		}
 
-		.card-body h4 {
-			margin-bottom: 10px; /* Adjust as needed for spacing between elements */
+		.main-box {
+			height: 720px;
+			margin: 40px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
 		}
 
-		#map {
-			height: 400px;
+		.mb-left-contain {
+			width: 30%;
+			height: 100%;
+			display: flex;
+			justify-content: space-around;
+		}
+
+		.mb-lc-status{
+			background-color: rgb(217, 217, 217, 0.75);
+			width: 85%;
+			height: 60%;
+			border-radius: 30px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		.mb-lc-s-inner-box{
+			width: 95%;
+			height: 95%;
+		}
+
+		.ib-top-text{
+			font-size: 20px;
+			font-weight: 600;
+			margin: 20px 35px 0px;
+		}
+
+		.ib-middle-box-wrapper{
+			margin: 0px 35px 0px;
+			height: 20%;
+			display: flex;
+			align-items: center;
+		}
+
+		.ib-middle-cloud{
+			margin-left: 20%;
+		}
+
+		.ib-middle-cloud img{
+			width: 120px;
+			height: 100px;
+		}
+
+		.ib-middle-result p{
+			font-size: 30px;
+			font-weight: 300;
+		}
+
+		.ib-bottom-status-text{
+			margin: 10px 35px 0px;
+		}
+
+		.ib-bottom-status-text p{
+			font-size: 18px;
+			font-weight: 500;
+		}
+
+		.line{
+			background-color: black;
+			height: 0.2%;
+			margin: 30px 35px 0px;
+		}
+
+		.ib-under-line-box{
+			height: 42%;
+			margin: 15px 35px 0px;
+		}
+
+		.ib-ulb-contrain{
+			width: 100%;
+			height: 33.33%;
+			display: flex;
+			align-items: center;
+		}
+
+		.ib-ulb-contrain box-icon{
+			width: 40px;
+			height: 40px;
+			margin-right: 20px;
+		}
+
+		.mb-right-contain {
+			width: 68%;
+			height: 100%;
+		}
+
+		.mb-rc-box-wrapper{
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		.inner-upper-box-contain{
+			background-color: rgb(217, 217, 217,0.75);
+			width: 100%;
+			height: 54%;
+			border-radius: 30px;
+		}
+
+		.iubc-top-text{
+			font-size: 20px;
+			font-weight: 600;
+			margin: 25px 35px;
+			color: rgb(52, 52, 52);
+		}
+
+		.iubc-inner-upper-box-contain{
+			height: 38%;
+			margin: 0px 35px 0px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		.iubc-ibc-long-contain{
+			background-color: rgb(217, 217, 217);
+			width: 46%;
+			height: 90%;
+			border-radius: 20px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		.iubc-ibc-lc-box{
+			width: 38%;
+			height: 85%;
+		}
+
+		.iubc-ibc-lc-box .lc-b-text p {
+			font-size: 14px;
+			font-weight: 300;
+			color: rgb(74, 66, 66);
+		}
+
+		.lc-b-result{
+			width: 100%;
+			height: 90%;
+			display: flex;
+			align-items: center;
+		}
+
+		.lc-b-r-logo box-icon {
+			width: 60px;
+			height: 60px;
+			color: rgb(62, 61, 61);
+		}
+
+		.lc-b-r-result-text p {
+			font-size: 20px;
+			font-weight: 600;
+			margin-left: 50%;
+			color: rgb(62, 61, 61);
+		}
+
+		.iubc-inner-bottom-box-contain{
+			height: 38%;
+			margin: 0px 35px 0px;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		.iubc-ibbc-long-contain{
+			width: 46%;
+			height: 90%;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.iubc-ibbc-small-contain{
+			width: 48%;
+			height: 100%;
+			background-color: rgb(217, 217, 217);
+			border-radius: 20px;
+		}
+
+		.inner-lower-box-contain {
+			background-color: rgb(217, 217, 217,0.75);
+			width: 100%;
+			height: 42%;
+			border-radius: 30px;
+		}
+
+		.ibbc-sc-text{
+			margin: 20px 35px 0px;
+		}
+
+		.ibbc-sc-text p {
+			font-size: 14px;
+			font-weight: 300;
+			color: rgb(74, 66, 66);
+		}
+
+		.ibbc-sc-result{
+			height: 56%;
+			margin: 10px 35px 10px;
+			display: flex;
+			align-items: center;
+		}
+
+		.ibbc-sc-r-logo box-icon {
+			width: 60px;
+			height: 60px;
+		}
+
+		.ibbc-sc-r-text p {
+			font-size: 20px;
+			font-weight: 600;
+			margin-left: 30%;
+			color: rgb(62, 61, 61);
+			text-align: center;
+		}
+
+		.ilbc-box-wrapper{
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.ilbc-bw-top-text p {
+			font-size: 20px;
+			font-weight: 600;
+			margin: 25px 35px;
+			color: rgb(52, 52, 52);
+		}
+
+		.ilbc-bw-long-contain {
+			height: 60%;
+			margin: 0px 35px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+
+		.ilbc-bw-lc-left{
+			width: 68%;
+			height: 100%;
+			background-color: rgb(217, 217, 217);
+			border-radius: 20px;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+
+		.ilbc-bw-lc-right{
+			width: 28%;
+			height: 100%;
+			background-color: rgb(217, 217, 217);
+			border-radius: 20px;
+		}
+
+		.ilbc-bw-lc-l-box {
+			width: 12%;
+			height: 60%;
+		}
+
+		.ilbc-bw-lc-l-b-text p {
+			color: rgb(74, 66, 66);
+			text-align: center;
+			font-size: 14px;
+			font-weight: medium;
+		}
+
+		.ilbc-bw-lc-l-b-result-text p {
+			text-align: center;
+			color: rgb(62, 61, 61);
+			font-size: 20px;
+			font-weight: 400;
+			margin-top: 50px;
+		}
+
+		.ilbc-bw-lc-right-text p {
+			font-size: 16px;
+			font-weight: 500;
+			margin: 20px 30px 0px;
+			color: rgb(74, 66, 66);
+		}
+
+		.ilbc-bw-lc-right-box{
+			margin: 20px 30px 0px;
+			height: 58%;
+			display: flex;
+			align-items: center;
+			justify-content: space-around;
+		}
+
+		.ilbc-bw-lc-rb-logo box-icon {
+			width: 60px;
+			height: 60px;
+		}
+
+		.ilbc-bw-lc-rb-text {
+			display: flex;
+			align-items: center;
+		}
+
+		.ilbc-bw-lc-rb-text p{
+			margin-left: 10px;
+			font-size: 30px;
+			font-weight: 500;
+		}
+
+		.inner-nav-bar-open {
+			display: flex;
+			align-items: center;
+		}
+
+		.inner-nav-bar-open-text p {
+			font-size: 20px;
+			font-weight: 500;
 		}
 	</style>
 </head>
-
-<body class="bg-cover bg-center" style="background-image: url('/img/mian login 2 3.png'); color: #ffffff;">
-
-<!-- Navigation Bar -->
+<body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-	<a class="navbar-brand" href="/">
-		<!-- Your icon and description -->
-		<img src="/img/img.png" width= class="d-inline-block align-top" alt="">
-		OpenWeatherMap-API Provider
+	<a class="navbar-brand" href="/without_user">
+		<img src="/img/img.png" alt="Logo">
 	</a>
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	</button>
 	<div class="collapse navbar-collapse" id="navbarNav">
 		<ul class="navbar-nav ml-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="/login"><i class="fas fa-sign-in-alt"></i> Login</a>
+				<a class="nav-link" href="/login">Login</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" href="/register"><i class="fas fa-user-plus"></i> Sign Up</a>
+				<a class="nav-link" href="/register">Sign Up</a>
 			</li>
 		</ul>
 	</div>
 </nav>
-
-<!-- Main Content Area using Flexbox -->
-<div class="container mx-auto py-8 flex">
-
-	<!-- Left Side: 35% Width -->
-	<div class="w-35 pr-8">
-
-		<!-- First Huge Box {1} -->
-		<div class="bg-gray-200 bg-opacity-75 rounded p-4 mb-4">
-			<h1 class="text-2xl font-bold mb-2 text-black">Current Weather</h1>
-			<p class="mb-2"><i class="fas fa-thermometer-half mr-2 text-black"></i> Temperature: ${weather.temperature} <span class="text-gray-600">&deg;C</span></p>
-			<p class="mb-2"><i class="fas fa-cloud mr-2 text-black"></i> Description: <span id="weather-description">${weather.weather}</span></p>
-			<p class="mb-2"><i class="far fa-clock mr-2 text-black"></i> Time: <span id="currentTime"></span></p>
-			<p class="mb-2"><i class="far fa-calendar-alt mr-2 text-black"></i> Date: <span id="currentDate"></span></p>
-			<p><i class="fas fa-map-marker-alt mr-2 text-black"></i> Location: <span id="location">${weather.country}, ${weather.city}</span></p>
-		</div>
-
-		<!-- Search Bar and Buttons -->
-		<div class="mb-4">
-			<div class="flex mb-2">
-				<input class="w-1/2 mr-2 p-2 border border-gray-400" name="city" type="text" placeholder="Search City" required/>
-				<input class="w-1/2 p-2 border border-gray-400" id="country" name="country" type="text" value="" placeholder="ISO code"/>
-			</div>
-		</div>
-
-	</div>
-
-
-	<!-- Right Side: 75% Width -->
-	<div class="w-75 pl-8">
-
-		<!-- Top Right Side {2} -->
-		<div class="flex mb-4">
-
-			<!-- Medium Boxes {2.1m, 2.2m} -->
-			<div class="w-1/2 pr-4">
-				<div class="bg-gray-200 bg-opacity-75 rounded p-4 mb-4">
-					<p class="mb-2"><i class="fas fa-thermometer-half mr-2 text-black"></i> Temperature: ${weather.temperature} <span class="text-gray-600">&deg;C</span></p>
-					<p class="mb-2"><i class="fas fa-tint mr-2 text-black"></i> Humidity: ${weather.humidity} <span class="text-gray-600">&nbsp;%</span></p>
-					<p class="mb-2"><i class="fas fa-tachometer-alt mr-2 text-black"></i> Pressure: ${weather.pressure} hPa</p>
-					<p class="mb-2"><i class="fas fa-compass mr-2 text-black"></i> Wind Degree: ${weather.deg}<span class="text-gray-600">&deg;</span></p>
-					<p class="mb-2"><i class="fas fa-comment-alt mr-2 text-black"></i> Description: <span id="weather-description">${weather.weather}</span></p>
+<div class="main-box">
+	<div class="mb-left-contain">
+		<div class="mb-lc-status">
+			<div class="mb-lc-s-inner-box">
+				<div class="ib-top-text">
+					<p>Now</p>
+				</div>
+				<div class="ib-middle-box-wrapper">
+					<div class="ib-middle-result">
+						<p><span>${weather.temperature}</span><span>&deg;c</span></p>
+					</div>
+					<div class="ib-middle-cloud">
+						<img src="https://raw.githubusercontent.com/maefahluang-uni/99-project-forecastweather-system-group-14/main/src/main/resources/static/img/cloud%201.png" alt="">
+					</div>
+				</div>
+				<div class="ib-bottom-status-text">
+					<p><span id="weather-description">${weather.weather}</span></p>
+				</div>
+				<div class="line"></div>
+				<div class="ib-under-line-box">
+					<div class="ib-ulb-contrain">
+						<box-icon name='time-five' ></box-icon>
+						<div class="ib-ulb-c-text">
+							<p><span id="currentTime"></span></p>
+						</div>
+					</div>
+					<div class="ib-ulb-contrain">
+						<box-icon name='calendar' ></box-icon>
+						<div class="ib-ulb-c-text">
+							<p><span id="currentDate"></span></p>
+						</div>
+					</div>
+					<div class="ib-ulb-contrain">
+						<box-icon name='map' type='solid' ></box-icon>
+						<div class="ib-ulb-c-text">
+							<p><span id="location">${weather.country}, ${weather.city}</span></p>
+						</div>
+					</div>
 				</div>
 			</div>
-
-			<div class="w-1/2 pl-4">
-				<div class="bg-gray-200 bg-opacity-75 rounded p-4 mb-4">
-					<p class="mb-2"><i class="fas fa-temperature-high mr-2 text-black"></i> Maximum temperature: ${weather.tempMax} <span class="text-gray-600">&deg;C</span></p>
-					<p class="mb-2"><i class="fas fa-temperature-low mr-2 text-black"></i> Minimum temperature: ${weather.tempMin} <span class="text-gray-600">&deg;C</span></p>
-					<p><i class="fas fa-wind mr-2 text-black"></i> Wind speed: ${weather.wind} m/h</p>
-				</div>
-			</div>
-
-			<!-- Map Container -->
-			<div id="map"></div>
-
-		</div>
-
-
-		<!-- Low Right Side {3} -->
-		<div class="bg-gray-200 bg-opacity-75 rounded p-4">
-			<p class="mb-2"><i class="fas fa-smog mr-2 text-black"></i> PM2.5: <span id="pm25">${air.pm2_5}</span></p>
-			<p class="mb-2"><i class="fas fa-cloud mr-2 text-black"></i> CO: <span>${air.co} </span></p>
-			<p class="mb-2"><i class="fas fa-wind mr-2 text-black"></i> No2: <span> ${air.no2} </span></p>
-			<p class="mb-2"><i class="fas fa-wind mr-2 text-black"></i> So2: <span> ${air.so2} </span></p>
-			<p class="mb-2"><i class="fas fa-smog mr-2 text-black"></i> PM2.5: <span> ${air.pm2_5}</span></p>
-			<p class="mb-2"><i class="fas fa-wind mr-2 text-black"></i> PM10: <span> ${air.pm10} </span></p>
-			<p class="mb-2"><i class="fas fa-wind mr-2 text-black"></i> SUM AQI: <span> ${air.aqi} AQI </span></p>
-			<p><i class="fas fa-wind mr-2 text-black"></i> Wind speed: <span id="so2">${weather.wind} m/h </span></p>
 		</div>
 	</div>
-
+	<div class="mb-right-contain">
+		<div class="mb-rc-box-wrapper">
+			<div class="inner-upper-box-contain">
+				<div class="iubc-top-text">
+					<p>Todays Highlights</p>
+				</div>
+				<div class="iubc-inner-upper-box-contain">
+					<div class="iubc-ibc-long-contain">
+						<div class="iubc-ibc-lc-box">
+							<div class="lc-b-text">
+								<p>Temperature</p>
+							</div>
+							<div class="lc-b-result">
+								<div class="lc-b-r-logo">
+									<box-icon name='thermometer' type='solid' ></box-icon>
+								</div>
+								<div class="lc-b-r-result-text">
+									<p>${weather.temperature}°c</p>
+								</div>
+							</div>
+						</div>
+						<div class="iubc-ibc-lc-box">
+							<div class="lc-b-text">
+								<p>Feels like</p>
+							</div>
+							<div class="lc-b-result">
+								<div class="lc-b-r-logo">
+									<box-icon name='like' ></box-icon>
+								</div>
+								<div class="lc-b-r-result-text">
+									<p><span>${weather.tempFeelsLike}°c</span></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="iubc-ibc-long-contain">
+						<div class="iubc-ibc-lc-box">
+							<div class="lc-b-text">
+								<p>Min. temperature</p>
+							</div>
+							<div class="lc-b-result">
+								<div class="lc-b-r-logo">
+									<box-icon name='chevrons-down' ></box-icon>
+								</div>
+								<div class="lc-b-r-result-text">
+									<p><span>${weather.tempMin}°c</span></p>
+								</div>
+							</div>
+						</div>
+						<div class="iubc-ibc-lc-box">
+							<div class="lc-b-text">
+								<p>Max. temperature</p>
+							</div>
+							<div class="lc-b-result">
+								<div class="lc-b-r-logo">
+									<box-icon name='chevrons-up' type='solid' ></box-icon>
+								</div>
+								<div class="lc-b-r-result-text">
+									<p><span>${weather.tempMax}°c</span></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="iubc-inner-bottom-box-contain">
+					<div class="iubc-ibbc-long-contain">
+						<div class="iubc-ibbc-small-contain">
+							<div class="ibbc-sc-text">
+								<p>Humidity</p>
+							</div>
+							<div class="ibbc-sc-result">
+								<div class="ibbc-sc-r-logo">
+									<box-icon name='droplet'></box-icon>
+								</div>
+								<div class="ibbc-sc-r-text">
+									<p><span>${weather.humidity}</span></p>
+								</div>
+							</div>
+						</div>
+						<div class="iubc-ibbc-small-contain">
+							<div class="ibbc-sc-text">
+								<p>Pressure</p>
+							</div>
+							<div class="ibbc-sc-result">
+								<div class="ibbc-sc-r-logo">
+									<box-icon name='water' ></box-icon>
+								</div>
+								<div class="ibbc-sc-r-text">
+									<p><span>${weather.pressure}</span></p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="iubc-ibbc-long-contain">
+						<div class="iubc-ibbc-small-contain">
+							<div class="ibbc-sc-text">
+								<p>Degree</p>
+							</div>
+							<div class="ibbc-sc-result">
+								<div class="ibbc-sc-r-logo">
+									<box-icon name='compass' type='solid' ></box-icon>
+								</div>
+								<div class="ibbc-sc-r-text">
+									<p><span>${weather.deg}</span></p>
+								</div>
+							</div>
+						</div>
+						<div class="iubc-ibbc-small-contain">
+							<div class="ibbc-sc-text">
+								<p>Description</p>
+							</div>
+							<div class="ibbc-sc-result">
+								<div class="ibbc-sc-r-logo">
+									<box-icon name='cloud' ></box-icon>
+								</div>
+								<div class="ibbc-sc-r-text">
+									<p><span id="weather-description">${weather.weather}</span></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="inner-lower-box-contain">
+				<div class="ilbc-box-wrapper">
+					<div class="ilbc-bw-top-text">
+						<p>Air Quality</p>
+					</div>
+					<div class="ilbc-bw-long-contain">
+						<div class="ilbc-bw-lc-left">
+							<div class="ilbc-bw-lc-l-box">
+								<div class="ilbc-bw-lc-l-b-text">
+									<p>PM2.5</p>
+								</div>
+								<div class="ilbc-bw-lc-l-b-result-text">
+									<p><span id="pm25">${air.pm2_5}</span></p>
+								</div>
+							</div>
+							<div class="ilbc-bw-lc-l-box">
+								<div class="ilbc-bw-lc-l-b-text">
+									<p>PM10</p>
+								</div>
+								<div class="ilbc-bw-lc-l-b-result-text">
+									<p><span> ${air.pm10} </span></p>
+								</div>
+							</div>
+							<div class="ilbc-bw-lc-l-box">
+								<div class="ilbc-bw-lc-l-b-text">
+									<p>CO</p>
+								</div>
+								<div class="ilbc-bw-lc-l-b-result-text">
+									<p><span>${air.co} </span></p>
+								</div>
+							</div>
+							<div class="ilbc-bw-lc-l-box">
+								<div class="ilbc-bw-lc-l-b-text">
+									<p>NO2</p>
+								</div>
+								<div class="ilbc-bw-lc-l-b-result-text">
+									<p><span> ${air.no2} </span></p>
+								</div>
+							</div>
+							<div class="ilbc-bw-lc-l-box">
+								<div class="ilbc-bw-lc-l-b-text">
+									<p>SO2</p>
+								</div>
+								<div class="ilbc-bw-lc-l-b-result-text">
+									<p><span> ${air.so2} </span></p>
+								</div>
+							</div>
+							<div class="ilbc-bw-lc-l-box">
+								<div class="ilbc-bw-lc-l-b-text">
+									<p>AQI</p>
+								</div>
+								<div class="ilbc-bw-lc-l-b-result-text">
+									<p><span> ${air.aqi} AQI </span></p>
+								</div>
+							</div>
+						</div>
+						<div class="ilbc-bw-lc-right">
+							<div class="ilbc-bw-lc-right-text">
+								<p>Wind speed</p>
+							</div>
+							<div class="ilbc-bw-lc-right-box">
+								<div class="ilbc-bw-lc-rb-logo">
+									<box-icon name='wind' ></box-icon>
+								</div>
+								<div class="ilbc-bw-lc-rb-text">
+									<p><span id="so2">${weather.wind}</span></p>
+									<p>M/h</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
-</div>
-
-<!-- Include Bootstrap JS and dependencies (Popper.js and jQuery) -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<!-- Google Maps API Script -->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB0nrwhMXXr7BfFCNk4RQ2aiplH9QJgmVo&callback=initMap"
-		async defer></script>
-
-<!-- Your custom JavaScript or link to external scripts -->
-<script src="path/to/your/custom.js"></script>
-
+</body>
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <script>
 	// Function to update the current time
 	function updateCurrentTime() {
@@ -303,7 +810,5 @@
 		});
 	}
 </script>
-
-</body>
 
 </html>
