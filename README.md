@@ -62,45 +62,5 @@ To run the backend, follow these steps:
 
    You can customize the Maven commands as needed, such as adding additional parameters for cleaning or validation.
 
-### Frontend
-
-To run the frontend, follow these steps:
-
-1. Open another terminal and navigate to the `Frontend` folder:
-    ```bash
-    cd Frontend
-    ```
-
-2. Install dependencies using npm:
-    ```bash
-    npm install
-    ```
-
-3. Start the React frontend:
-    ```bash
-    npm start
-    ```
-
-4. Browser Fronted - React Localhost:
-
-   ```React
-    [weather-view page]
-    http://localhost:3000/
-    ```
-
-     ```React
-    [forecast-view page]
-    http://localhost:3000/five_day/forecast?city={YOUR_CITY}&country={ISOCountryCODE}
-    ```
-
-     ```React
-    [current-weather-view page]
-    http://localhost:3000/current/weather?city={YOUR_CITY}&country={ISOCountryCODE}
-    ```
-
-   This will launch the development server for the React frontend.
-
-Now you should have both the backend and frontend running simultaneously. Open your browser and navigate to the specified URLs for the backend and frontend components.
-
 
 
