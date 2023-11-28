@@ -18,7 +18,8 @@
 		<jetcache.version>2.5.9</jetcache.version>
 	</properties>
 
-
+	
+	<dependencies>
     <!-- Spring Framework Mail Dependency -->
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -123,13 +124,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
 
-<!--
+<!-- 
 				&lt;!&ndash; https://mvnrepository.com/artifact/mysql/mysql-connector-java &ndash;&gt;-->
 <!--		<dependency>-->
 <!--			<groupId>mysql</groupId>-->
@@ -160,14 +162,15 @@
 <!--			<artifactId>spring-cloud-gcp-starter-sql-mysql</artifactId>-->
 <!--			<version>4.8.4</version>-->
 <!--		</dependency>-->
-<dependency>
-    <groupId>mysql</groupId>
-    <artifactId>mysql-connector-java</artifactId>
-    <version>8.0.33</version> <!-- Use the version that matches your MySQL server version -->
-</dependency>
+<!--<dependency>-->
+<!--    <groupId>mysql</groupId>-->
+<!--    <artifactId>mysql-connector-java</artifactId>-->
+<!--    <version>8.0.33</version> &lt;!&ndash; Use the version that matches your MySQL server version &ndash;&gt;-->
+<!--</dependency>-->
 
 
 
+	</dependencies>
 
     <build>
         <plugins>
@@ -185,5 +188,6 @@
             </plugin>
         </plugins>
     </build>
+
 
 </project>
