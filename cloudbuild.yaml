@@ -32,7 +32,7 @@ steps:
   # Grant permissions to push to Artifact Registry
   - name: 'gcr.io/cloud-builders/gcloud'
     entrypoint: gcloud
-    args: ['projects', 'add-iam-policy-binding', '$PROJECT_ID', '--member=serviceAccount:592434562240@cloudbuild.gserviceaccount.com', '--role=roles/artifactregistry.writer']
+    args: ['projects', 'add-iam-policy-binding', 'forecastweather14', '--member=serviceAccount:592434562240@cloudbuild.gserviceaccount.com', '--role=roles/artifactregistry.writer']
     dir: '/workspace'
 
   # Build the container image
