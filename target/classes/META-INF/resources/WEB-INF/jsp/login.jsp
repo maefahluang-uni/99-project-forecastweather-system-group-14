@@ -61,6 +61,7 @@
             margin: 0;
             padding: 0;
         }
+
     </style>
 </head>
 <body>
@@ -107,7 +108,7 @@
                     <h2 class="text-center">Login Form</h2>
                 </div>
                 <div class="card-body">
-                    <form method="post" role="form" action="${pageContext.request.contextPath}/login" th:action="@{/login}"
+                    <form method="post" role="form" action="/login" th:action="@{/login}"
                           class="form-horizontal">
 
                         <!--User input box-->
